@@ -1,0 +1,103 @@
+import React from 'react';
+import { Dimensions } from 'react-native';
+import styled from 'styled-components/native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
+import Slider from 'react-native-slider';
+
+const ScreenWidth = Dimensions.get('window').width;
+const SliderWidth = ScreenWidth * 0.85;
+
+class ProgressSlider extends ProgressComponent {
+	msToSec(ms) {
+		return parseInt(ms / 1000, 10);
+	}
+
+	secToTime(secs) {
+		if (secs < 0) {
+			return '0:00';
+		}
+		let minutes = Math.floor(secs / 60);
+		let seconds = Math.floor(secs % 60);
+		return seconds <= 9 ? `${minutes}:0${seconds}` : `${minutes}:${seconds}`;
+	}
+
+	timePassed(duration) {
+		return this.secToTime(this.getProgress() * this.msToSec(duration));
+	}
+
+	secToTimeDuration(duration) {
+		let timeInSeconds = this.msToSec(duration);
+		return this.secToTime(timeInSeconds);
+	}
+
+	seekTo = (value) => {
+		let seekPosition = value * this.msToSec(this.props.currentTrack.duration);
+		TrackPlayer.seekTo(seekPosition);
+	};
+
+	render() {
+		const { currentTrack } = this.props;
+		return (
+			<Wrapper>
+				<Slider
+					value={this.getProgress()}
+					style={styles.sliderStyle}
+					minimumTrackTintColor="#FFFFFF"
+					maximumTrackTintColor="rgba(255, 255, 255, 0.35)"
+					thumbTouchSize={styles.thumbSize}
+					trackStyle={styles.barStyle}
+					thumbStyle={styles.thumbStyle}
+					onValueChange={this.seekTo}
+				/>
+				<TimeWrapper>
+					<Time>{this.timePassed(currentTrack.duration)}</Time>
+					<Time>{this.secToTimeDuration(currentTrack.duration)}</Time>
+				</TimeWrapper>
+			</Wrapper>
+		);
+	}
+}
+
+function mapStateToProps({ playback }) {
+	return { currentTrack: playback.currentTrack };
+}
+
+export default connect(mapStateToProps, actions)(ProgressSlider);
+
+const Wrapper = styled.View`
+	flex-direction: column;
+	align-items: center;
+`;
+
+const TimeWrapper = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: ${SliderWidth}px;
+	margin-top: -12px;
+`;
+
+const Time = styled.Text`
+	font-family: 'ProductSans';
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+`;
+
+const styles = {
+	sliderStyle: {
+		width: SliderWidth
+	},
+	thumbSize: {
+		width: ScreenWidth * 1.5,
+		height: 40
+	},
+	barStyle: {
+		height: 3
+	},
+	thumbStyle: {
+		height: 0,
+		width: 0
+	}
+};
