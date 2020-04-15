@@ -34,6 +34,7 @@ const Wrapper = styled.View`
 const AddIcon = styled(Icon)`
 	color: ${contrastColor};
 	margin-right: 28px;
+	margin-top: 1px;
 `;
 
 const Text = styled.Text`
@@ -44,7 +45,7 @@ const Text = styled.Text`
 `;
 
 const addIcon = {
-	name: 'md-add',
-	type: 'ionicon',
-	size: 20
+	name: 'playlist-add',
+	type: 'material',
+	size: 19
 };

@@ -11,7 +11,7 @@ import CoverArt from '../components/CoverArt';
 import Icon from '../components/Icon';
 import RenderToast from '../components/RenderToast';
 
-const ScreenWidth = Dimensions.get('window').width;
+const PlayerWidth = Dimensions.get('window').width * 0.85;
 
 function PlayerScreen(props) {
 	const { navigation, currentTrack } = props;
@@ -66,13 +66,14 @@ const Gradient = styled(LinearGradient)`
 
 const Background = styled.ImageBackground`
 	flex: 1;
+	background-color: black;
 `;
 
 const Header = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: ${ScreenWidth * 0.85 + 10}px;
+	width: ${PlayerWidth + 10}px;
 	margin-top: 10px;
 `;
 
@@ -96,8 +97,9 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
 	font-family: 'CircularBold';
 	font-size: 18px;
-	margin: 0 20px 4px 20px;
 	color: white;
+	width: ${PlayerWidth}px;
+	text-align: center;
 `;
 
 const Artist = styled.Text`
@@ -105,6 +107,8 @@ const Artist = styled.Text`
 	font-size: 15px;
 	margin-top: 4px;
 	color: rgba(255, 255, 255, 0.75);
+	width: ${PlayerWidth}px;
+	text-align: center;
 `;
 
 const StyledIcon = styled(Icon)`

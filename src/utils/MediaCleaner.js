@@ -55,7 +55,7 @@ export default function cleanupMedia(media) {
 				title:
 					mediaFiles[i].title ||
 					mediaFiles[i].fileName.replace(/.mp3|.aac|.wav|.amr|.flac/, ''),
-				artwork: mediaFiles[i].cover || 'cover',
+				artwork: mediaFiles[i].cover || null,
 				artist: mediaFiles[i].author === '<unknown>' ? 'unknown' : mediaFiles[i].author,
 				album: mediaFiles[i].album === '<unknown>' ? 'unknown' : mediaFiles[i].album,
 				index: i,

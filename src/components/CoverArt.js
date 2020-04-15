@@ -1,25 +1,27 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import styled, { withTheme } from 'styled-components/native';
+import styled from 'styled-components/native';
+import CoverPlaceholder from './CoverPlaceholder';
 // import { CoverImage } from 'react-native-get-music-files-v3dev-test';
 
 const ImageSize = Dimensions.get('window').width * 0.85;
 
-const lightPlaceholder = require('../../assets/placeholder_light.png');
-const darkPlaceholder = require('../../assets/placeholder_dark.png');
-
 const CoverArt = (props) => {
-	const { theme, src } = props;
-	const placeholder = theme.current === 'light' ? lightPlaceholder : darkPlaceholder;
-	const cover = src === 'cover' ? placeholder : { uri: src };
-	// const cover = src === 'cover' ? placeholder : src;
-	return (
-		<Cover source={cover} />
+	return props.src ? (
+		<Cover source={{ uri: props.src }} />
+	) : (
 		//<CoverImage source={cover} width={ImageSize} height={ImageSize} />
+		<CoverPlaceholder
+			size={ImageSize}
+			iconSize={ImageSize / 2.5}
+			radius={5}
+			bgColor="black"
+			fgColor="rgba(255, 255, 255, 0.9)"
+		/>
 	);
 };
 
-export default withTheme(CoverArt);
+export default CoverArt;
 
 const Cover = styled.Image`
 	height: ${ImageSize}px;
