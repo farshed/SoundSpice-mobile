@@ -27,7 +27,7 @@
 		"react-native-reanimated": "^1.7.1",
 		"react-native-safe-area-context": "^0.7.3",
 		"react-native-screens": "^2.4.0",
-		"react-native-share": "^3.1.2",
+		"react-native-share": "^3.2.0",
 		"react-native-slider": "^0.11.0",
 		"react-native-tab-view": "^2.14.0",
 		"react-native-track-player": "^1.2.2",

@@ -49,7 +49,7 @@ function OptionsModal(props) {
 		props.onPressCancel();
 		Share.open({
 			url: `file://${selectedTrack.url}`,
-			// type: 'audio/mp3',
+			type: 'audio/mp3',
 			failOnCancel: false
 		});
 	}
