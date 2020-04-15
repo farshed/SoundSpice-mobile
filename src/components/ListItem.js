@@ -30,9 +30,9 @@ export default withTheme(ListItem);
 const Wrapper = styled.View`
 	flex-direction: row;
 	align-items: center;
-	height: 55px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	height: 60px;
+	margin-top: 4px;
+	margin-bottom: 4px;
 `;
 
 const StyledIcon = styled(Icon)`

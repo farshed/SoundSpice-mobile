@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './src/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import RootNavigator from './src/navigation';
-import SplashScreen from './src/components/SplashScreen';
+import SplashScreen from './src/screens/SplashScreen';
 
 export default function App() {
 	const [timePassed, setTimePassed] = useState(false);

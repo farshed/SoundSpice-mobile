@@ -48,6 +48,7 @@ const RenderTrack = React.memo(
 		!(
 			nextProps.currentTrack.id === nextProps.item.id ||
 			prevProps.currentTrack.id === prevProps.item.id ||
+			prevProps.item !== nextProps.item ||
 			prevProps.currentTheme !== nextProps.currentTheme
 		)
 );
@@ -72,6 +73,7 @@ const MainWrapper = styled.View`
 const Thumbnail = styled.Image`
 	height: 50px;
 	width: 50px;
+	border-radius: 3px;
 `;
 
 const TextWrapper = styled.View`

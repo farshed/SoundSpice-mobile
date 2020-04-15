@@ -33,19 +33,20 @@ export default withTheme(RenderCategory);
 const Image = styled.Image`
 	width: ${itemWidth}px;
 	height: ${itemHeight - itemHeight / 4}px;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
 `;
 
 const TextWrapper = styled.View`
 	height: ${itemHeight / 4}px;
 	width: ${itemWidth}px;
 	justify-content: space-evenly;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	elevation: 2;
 	background-color: ${elevatedBGColor};
-	padding: 5px;
 `;
 
 const Artist = styled.Text`

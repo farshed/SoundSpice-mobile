@@ -24,4 +24,5 @@ export default withTheme(CoverArt);
 const Cover = styled.Image`
 	height: ${ImageSize}px;
 	width: ${ImageSize}px;
+	border-radius: 5px;
 `;
