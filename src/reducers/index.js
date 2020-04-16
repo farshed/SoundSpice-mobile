@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import media from './MediaReducer';
-import footer from './PlayerFooter';
-import playback from './PlaybackReducer';
-import player from './BlacklistedPlayback';
-import playlists from './PlaylistReducer';
-import settings from './SettingsReducer';
-import lyrics from './LyricsReducer';
+import media from './media';
+import footer from './playerFooter';
+import playback from './playback';
+import player from './blacklistedPlayback';
+import playlists from './playlist';
+import settings from './settings';
+import lyrics from './lyrics';
 
 export default combineReducers({
 	media,
