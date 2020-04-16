@@ -21,6 +21,6 @@ const Wrapper = styled.View`
 `;
 
 const Logo = styled.Image`
-	height: 130px;
-	width: 130px;
+	height: 150px;
+	width: 150px;
 `;

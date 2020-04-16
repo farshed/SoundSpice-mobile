@@ -34,11 +34,6 @@ function BottomTabNav(props) {
 		};
 	}
 
-	// function isTabBarVisible(route) {
-	// 	let index = route.state ? route.state.index : 0;
-	// 	return index === 0;
-	// }
-
 	return (
 		<BottomTabs.Navigator
 			initialRouteName="Tracks"

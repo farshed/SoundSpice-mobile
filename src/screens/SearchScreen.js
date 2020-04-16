@@ -128,8 +128,8 @@ const styles = {
 		marginTop: 10
 	},
 	searchIcon: {
-		name: 'search1',
-		type: 'antdesign',
+		name: 'search',
+		type: 'feather',
 		size: 62
 	}
 };
