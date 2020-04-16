@@ -39,7 +39,7 @@ function TopMaterialTabNav(props) {
 		},
 		allowFontScaling: false
 	};
-	console.log(props.tabOrder);
+
 	return (
 		<TopTabs.Navigator tabBarOptions={tabBarOptions}>
 			{props.tabOrder.map((tab) => (
