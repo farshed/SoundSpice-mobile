@@ -11,16 +11,15 @@ function InputDialog(props) {
 
 	useEffect(() => {
 		if (isVisible && name) setInput(name);
+		return () => setInput('');
 	}, [isVisible]);
 
 	function onSave() {
 		props.onPressSave(input.trim());
-		setInput('');
 	}
 
 	function onCancel() {
 		props.onPressCancel();
-		setInput('');
 	}
 
 	const { contrast, backdrop, foreground, elevatedBG } = theme;

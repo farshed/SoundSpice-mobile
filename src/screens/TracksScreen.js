@@ -49,7 +49,7 @@ function TracksScreen(props) {
 			return (
 				<View style={renderMargin}>
 					<QuickScrollList
-						keyExtractor={(asset, index) => asset.id.toString()}
+						keyExtractor={(asset) => asset.id.toString()}
 						data={media}
 						renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 						getItemLayout={flatListItemLayout}

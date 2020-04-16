@@ -7,13 +7,13 @@ import CreatePlaylistButton from '../components/CreatePlaylistButton';
 import ListItem from '../components/ListItem';
 import InputDialog from '../components/InputDialog';
 import Icon from '../components/Icon';
-import OptionsModal from '../components/OptionsModal';
+import PlaylistOptions from '../components/PlaylistOptions';
 import RenderToast from '../components/RenderToast';
 import { contrastTransColor } from '../themes/styles';
 
 function PlaylistsScreen(props) {
 	const [isModalVisible, setModal] = useState(false);
-	const [optionsModal, setOptionsModal] = useState({ visible: false, item: {} });
+	const [optionsModal, setOptionsModal] = useState({ visible: false, name: '' });
 
 	useEffect(() => {
 		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
@@ -37,8 +37,8 @@ function PlaylistsScreen(props) {
 		props.navigation.navigate('playlist', { title, content });
 	}
 
-	function onOptionsPress() {
-		setOptionsModal({ visible: true });
+	function onOptionsPress(name) {
+		setOptionsModal({ visible: true, name });
 	}
 
 	const { playlists } = props;
@@ -55,8 +55,8 @@ function PlaylistsScreen(props) {
 				saveButtonTitle="Create"
 				title="Create playlist"
 			/>
-			<OptionsModal
-				selectedTrack={optionsModal.item}
+			<PlaylistOptions
+				selectedPlaylist={optionsModal.name}
 				isVisible={optionsModal.visible}
 				onPressCancel={() => setOptionsModal({ ...optionsModal, visible: false })}
 			/>
@@ -68,7 +68,7 @@ function PlaylistsScreen(props) {
 						key={String(key + index)}
 						onPress={() => onListItemPress(key, playlists[key])}
 						iconProps={playlistIcon}
-						rightElement={<StyledIcon {...optionsIcon} onPress={() => setOptionsModal} />}
+						rightElement={<StyledIcon {...optionsIcon} onPress={() => onOptionsPress(key)} />}
 					/>
 				))}
 			</ScrollView>

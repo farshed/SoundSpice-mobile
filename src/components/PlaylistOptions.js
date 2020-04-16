@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { connect } from 'react-redux';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import Share from 'react-native-share';
 import Modal from 'react-native-modal';
 import * as actions from '../actions';
 import ListItem from './ListItem';
@@ -16,55 +14,31 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const borderRadius = SCREEN_WIDTH / 12;
 
-function OptionsModal(props) {
+function PlaylistOptions(props) {
 	const [isDialogVisible, setDialogVisible] = useState(false);
 	const [isRenameModalVisible, setRenameModal] = useState(false);
 
-	const navigation = useNavigation();
-	const route = useRoute();
-	const { selectedTrack, isVisible, onPressCancel, playlistRemoveOption } = props;
-
-	function onAddToPlaylist() {
-		props.onPressCancel();
-		navigation.navigate('addToPlaylist', { song: selectedTrack });
-	}
-
-	function onRemoveFromPlaylist() {
-		props.onPressCancel();
-		props.removeFromPlaylist(route.params.title, selectedTrack);
-	}
+	const { selectedPlaylist, isVisible, onPressCancel } = props;
 
 	function onPressRename(newName) {
-		if (newName !== selectedTrack.title) {
-			let index = newName.split('').indexOf('/');
+		let playlistName = newName.trim();
+		if (playlistName === selectedPlaylist) return setRenameModal(false);
+		if (playlistName) {
+			let keys = Object.keys(props.playlists);
+			let index = keys.indexOf(playlistName);
 			if (index === -1) {
-				props.renameTrack(selectedTrack, newName);
-			} else {
-				return RenderToast('Title should not contain "/"');
-			}
-		}
-		setRenameModal(false);
-		props.onPressCancel();
-	}
-
-	function onShare() {
-		props.onPressCancel();
-		Share.open({
-			url: `file://${selectedTrack.url}`,
-			type: 'audio/mp3',
-			failOnCancel: false
-		});
+				props.renamePlaylist(selectedPlaylist, playlistName);
+				setRenameModal(false);
+				props.onPressCancel();
+			} else RenderToast('A playlist with the same name already exists');
+		} else RenderToast('Playlists cannot be untitled');
 	}
 
 	function onDeleteConfirm() {
 		setDialogVisible(false);
 		props.onPressCancel();
-		props.deleteTrack(selectedTrack);
+		props.deletePlaylist(selectedPlaylist);
 	}
-
-	const modalTitle = `${selectedTrack.title}  •  ${selectedTrack.artist}`;
-	const optionText = playlistRemoveOption ? 'Remove from Playlist' : 'Add to Playlist';
-	const optionFunc = playlistRemoveOption ? onRemoveFromPlaylist : onAddToPlaylist;
 
 	return (
 		<StyledModal
@@ -75,10 +49,8 @@ function OptionsModal(props) {
 			backdropColor="black">
 			<ModalContentWrapper>
 				<TextWrapper>
-					<ModalTitle numberOfLines={1}>{modalTitle}</ModalTitle>
+					<ModalTitle numberOfLines={1}>{selectedPlaylist}</ModalTitle>
 				</TextWrapper>
-				<ListItem title={optionText} iconProps={icons.playlist} onPress={optionFunc} />
-				<ListItem title="Share" iconProps={icons.share} onPress={onShare} />
 				<ListItem
 					title="Rename"
 					iconProps={icons.rename}
@@ -94,15 +66,15 @@ function OptionsModal(props) {
 					onPressSave={onPressRename}
 					onPressCancel={() => setRenameModal(false)}
 					inputPlaceholder="New title"
-					title="Rename Track"
-					name={selectedTrack.title}
+					title="Rename Playlist"
+					name={selectedPlaylist}
 					saveButtonTitle="Rename"
 				/>
 				<ConfirmDialog
 					title="Confirm Delete"
 					buttonTitle="Delete"
 					cancelButton
-					description="Are you sure you want to delete this track?"
+					description="Are you sure you want to delete this playlist?"
 					onCancel={() => setDialogVisible(false)}
 					onConfirm={onDeleteConfirm}
 					isVisible={isDialogVisible}
@@ -112,7 +84,13 @@ function OptionsModal(props) {
 	);
 }
 
-export default connect(null, actions)(OptionsModal);
+function mapStateToProps(state) {
+	return {
+		playlists: state.playlists
+	};
+}
+
+export default connect(mapStateToProps, actions)(PlaylistOptions);
 
 const StyledModal = styled(Modal)`
 	justify-content: flex-end;
@@ -124,7 +102,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const ModalContentWrapper = styled.View`
-	height: 310px;
+	height: 172px;
 	width: ${SCREEN_WIDTH}px;
 	background-color: ${elevatedBGColor};
 	elevation: 5;
@@ -142,22 +120,12 @@ const TextWrapper = styled.View`
 
 const ModalTitle = styled.Text`
 	font-family: 'Circular';
-	font-size: 14px;
+	font-size: 15px;
 	text-align: center;
 	color: ${contrastColor};
 `;
 
 const icons = {
-	playlist: {
-		name: 'list',
-		type: 'feather',
-		size: 20
-	},
-	share: {
-		name: 'share-2',
-		type: 'feather',
-		size: 20
-	},
 	rename: {
 		name: 'edit',
 		type: 'feather',

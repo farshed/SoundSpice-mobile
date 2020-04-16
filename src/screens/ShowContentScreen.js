@@ -17,7 +17,7 @@ function ShowFolderScreen(props) {
 	return (
 		<View style={{ flex: 1 }}>
 			<FlatList
-				keyExtractor={(asset, index) => asset.id.toString()}
+				keyExtractor={(asset) => asset.id.toString()}
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				data={props.route.params.content}
 				getItemLayout={flatListItemLayout}

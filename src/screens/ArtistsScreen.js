@@ -55,7 +55,7 @@ function ArtistsScreen(props) {
 				renderItem={renderArtists}
 				numColumns={2}
 				getItemLayout={flatListCardLayout}
-				keyExtractor={(asset, index) => asset.title.toString()}
+				keyExtractor={(asset) => asset.title.toString()}
 			/>
 		</View>
 	);

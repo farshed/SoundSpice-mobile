@@ -39,7 +39,7 @@ function SearchScreen(props) {
 			<FlatList
 				data={listFilter()}
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
-				keyExtractor={(asset, index) => asset.id.toString()}
+				keyExtractor={(asset) => asset.id.toString()}
 				style={[styles.resultsWrapper, renderMargin]}
 			/>
 		) : (
