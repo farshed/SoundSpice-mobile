@@ -1,19 +1,17 @@
 import React from 'react';
 import { View, Dimensions, TouchableNativeFeedback } from 'react-native';
-import styled, { withTheme } from 'styled-components/native';
+import styled from 'styled-components/native';
 import { elevatedBGColor, contrastColor, contrastTransColor } from '../themes/styles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const itemWidth = SCREEN_WIDTH / 2 - 25;
 const itemHeight = itemWidth + itemWidth / 8;
-const lightPlaceholder = require('../../assets/placeholder_light.png');
-const darkPlaceholder = require('../../assets/placeholder_dark.png');
+const placeholder = require('../../assets/placeholder.jpg');
 
 function RenderCategory(props) {
 	const itemMargin = props.index % 2 === 0 ? { marginLeft: 18, marginRight: 14 } : {};
 	itemMargin.marginTop = 20;
-	const placeholder = props.theme.current === 'light' ? lightPlaceholder : darkPlaceholder;
-	const imageSource = props.image === 'cover' ? placeholder : { uri: props.image };
+	const imageSource = props.image ? { uri: props.image } : placeholder;
 	const subText = `${props.numOfTracks} ${props.numOfTracks > 1 ? 'tracks' : 'track'}`;
 	return (
 		<TouchableNativeFeedback onPress={props.onPress}>
@@ -28,7 +26,7 @@ function RenderCategory(props) {
 	);
 }
 
-export default withTheme(RenderCategory);
+export default RenderCategory;
 
 const Image = styled.Image`
 	width: ${itemWidth}px;
@@ -43,8 +41,8 @@ const TextWrapper = styled.View`
 	justify-content: space-evenly;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	elevation: 2;
 	background-color: ${elevatedBGColor};
 `;

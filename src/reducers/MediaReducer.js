@@ -3,26 +3,7 @@ const INITIAL_STATE = { mediaFiles: [], mediaLoaded: false };
 export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'get_media_success':
-			// 	{
-			// 	let media = [...state.mediaFiles];
-			// 	let mediaWithLyrics = action.payload.map((song) => {
-			// 		let i = media.findIndex(
-			// 			(item) => item.title === song.title && item.artist === song.artist
-			// 		);
-			// 		if (i === -1 || !media[i].lyrics) return song;
-			// 		return { ...song, lyrics: media[i].lyrics };
-			// 	});
-			// 	return { ...state, mediaLoaded: true, mediaFiles: mediaWithLyrics };
-			// }
 			return { mediaLoaded: true, mediaFiles: action.payload };
-		// case 'get_covers_success': {
-		// 	let mediaBatch = [...action.payload.batch];
-		// 	let updatedMedia = [...state.mediaFiles];
-		// 	let { batchCount } = action.payload;
-		// 	let batchSize = 50;
-		// 	updatedMedia.splice(batchCount * batchSize, batchSize, ...mediaBatch);
-		// 	return { ...state, mediaFiles: updatedMedia };
-		// }
 		case 'get_lyrics_success': {
 			let newMedia = [...state.mediaFiles];
 			newMedia[action.payload.index].lyrics = action.payload.lyrics;

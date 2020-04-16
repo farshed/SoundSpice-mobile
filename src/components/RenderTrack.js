@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 // import { CoverImage } from 'react-native-get-music-files-v3dev-test';
 import Icon from './Icon';
-import CoverPlaceholder from './CoverPlaceholder';
 import { contrastColor, foregroundColor, contrastTransColor } from '../themes/styles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const placeholder = require('../../assets/placeholder.jpg');
 
 const RenderTrack = React.memo(
 	(props) => {
@@ -18,24 +18,13 @@ const RenderTrack = React.memo(
 			if (item.id !== currentTrack.id) setCurrentTrack(item);
 		}
 
-		const isDark = currentTheme === 'dark';
-		const rippleColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-		const placeholderFG = isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)';
-		const placeholderBG = isDark ? 'black' : 'white';
+		const rippleColor =
+			currentTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+		const coverSrc = item.artwork ? { uri: item.artwork } : placeholder;
 		return (
 			<Touchable onPress={onTrackPress} background={Touchable.Ripple(rippleColor, false)}>
 				<MainWrapper>
-					{item.artwork ? (
-						<Thumbnail source={{ uri: item.artwork }} />
-					) : (
-						<CoverPlaceholder
-							size={50}
-							iconSize={25}
-							radius={3}
-							bgColor={placeholderBG}
-							fgColor={placeholderFG}
-						/>
-					)}
+					<Thumbnail source={coverSrc} />
 					{/* <CoverImage source={item.url} width={50} height={50} /> */}
 					<TextWrapper>
 						<Title numberOfLines={1} current={item.id === currentTrack.id}>
