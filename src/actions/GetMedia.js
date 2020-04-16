@@ -1,9 +1,9 @@
-import { Alert } from 'react-native';
 import { RNAndroidAudioStore } from 'react-native-get-music-files';
 import RNFetchBlob from 'rn-fetch-blob';
 import { getStoragePermission, checkStoragePermissions } from '../utils/Permissions';
 import cleanMedia from '../utils/MediaCleaner';
 import { store } from '../store';
+import errorReporter from '../utils/ErrorReporter';
 
 // import MusicFiles from 'react-native-get-music-files-v3dev-test';
 
@@ -48,7 +48,7 @@ export const getMedia = () => async (dispatch) => {
 			dispatch({ type: 'get_media_success', payload: mediaWithCovers });
 		}
 	} catch (e) {
-		Alert.alert('An error ocurred');
+		errorReporter(e);
 	}
 };
 

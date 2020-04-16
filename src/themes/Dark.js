@@ -6,6 +6,5 @@ export const dark = {
 	contrast: 'white',
 	contrastTrans: 'rgba(255, 255, 255, ',
 	fgTrans: 'rgba(30, 215, 96, ',
-	backdrop: '#8E9196',
 	current: 'dark'
 };

@@ -5,15 +5,15 @@ import { foreground2Color, contrastColor } from '../themes/styles';
 
 function ConfirmDialog(props) {
 	const { title, description, buttonTitle, isVisible, onCancel, cancelButton } = props;
-	const { foreground, contrast, elevatedBG, backdrop } = props.theme;
+	const { foreground, contrast, elevatedBG } = props.theme;
 	return (
 		<Dialog.Container
 			visible={isVisible}
-			backdropColor={backdrop}
+			backdropColor="black"
 			onBackButtonPress={onCancel}
 			onBackdropPress={onCancel}
 			contentStyle={{ backgroundColor: elevatedBG }}>
-			<DialogTitle>{title}</DialogTitle>
+			<DialogTitle numberOfLines={2}>{title}</DialogTitle>
 			<DialogDescription>{description}</DialogDescription>
 			{cancelButton ? (
 				<Dialog.Button label="Cancel" color={contrast} onPress={onCancel} />
@@ -26,9 +26,13 @@ function ConfirmDialog(props) {
 export default withTheme(ConfirmDialog);
 
 const DialogTitle = styled(Dialog.Title)`
+	font-family: 'ProductSans';
+	margin-left: 10px;
 	color: ${foreground2Color};
 `;
 
 const DialogDescription = styled(Dialog.Description)`
+	font-family: 'ProductSans';
+	padding: 10px;
 	color: ${contrastColor};
 `;

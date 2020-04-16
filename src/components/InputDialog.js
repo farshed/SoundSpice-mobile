@@ -22,12 +22,12 @@ function InputDialog(props) {
 		props.onPressCancel();
 	}
 
-	const { contrast, backdrop, foreground, elevatedBG } = theme;
+	const { contrast, foreground, elevatedBG } = theme;
 
 	return (
 		<Dialog.Container
 			visible={isVisible}
-			backdropColor={backdrop}
+			backdropColor="black"
 			onBackButtonPress={onCancel}
 			onBackdropPress={onCancel}
 			contentStyle={{ backgroundColor: elevatedBG }}>
@@ -51,6 +51,8 @@ function InputDialog(props) {
 export default connect(null, actions)(withTheme(InputDialog));
 
 const DialogTitle = styled(Dialog.Title)`
+	font-family: 'ProductSans';
+	margin-left: 10px;
 	color: ${foreground2Color};
 `;
 
