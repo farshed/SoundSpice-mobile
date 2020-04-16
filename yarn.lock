@@ -4830,6 +4830,11 @@ react-native-dialog@^5.6.0:
     prop-types "^15.7.2"
     react-native-modal "^9.0.0"
 
+react-native-draggable-flatlist@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-draggable-flatlist/-/react-native-draggable-flatlist-2.3.2.tgz#4d84b2f7298d2426a4e5a95290c3b10861d81bf2"
+  integrity sha512-IoVmTwfUX+dvkgmIrJdPkwfgARJDCY+/KGVhYLGUzPvYpIIlcwhv7Vn6430GyEaO9TPsgnSVsOwVprnN16tn3Q==
+
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"

@@ -9,6 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import AboutScreen from '../screens/AboutScreen';
 import ShowPlaylistScreen from '../screens/ShowPlaylistScreen';
 import ShowContentScreen from '../screens/ShowContentScreen';
+import TabOrder from '../screens/TabOrder';
 import Icon from '../components/Icon';
 
 function RootStack(props) {
@@ -46,9 +47,10 @@ function RootStack(props) {
 				component={AddToPlaylist}
 				options={{ title: 'Add to playlist' }}
 			/>
-			<Stack.Screen name="about" component={AboutScreen} options={{ title: 'About' }} />
 			<Stack.Screen name="playlist" component={ShowPlaylistScreen} options={headerTitle} />
 			<Stack.Screen name="content" component={ShowContentScreen} options={headerTitle} />
+			<Stack.Screen name="tab-order" component={TabOrder} options={noHeader} />
+			<Stack.Screen name="about" component={AboutScreen} options={{ title: 'About' }} />
 		</Stack.Navigator>
 	);
 }

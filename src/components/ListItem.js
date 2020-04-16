@@ -7,14 +7,17 @@ import { contrastColor, contrastTransColor } from '../themes/styles';
 const ScreenWidth = Dimensions.get('window').width;
 
 function ListItem(props) {
-	const { onPress, title, subtitle, textStyle, rightElement, theme } = props;
+	const { onPress, title, subtitle, titleStyle, rightElement, theme, onLongPress } = props;
 	const rippleColor = theme.current === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
 	return (
-		<Touchable onPress={onPress} background={Touchable.Ripple(rippleColor, false)}>
+		<Touchable
+			onPress={onPress}
+			onLongPress={onLongPress}
+			background={Touchable.Ripple(rippleColor, false)}>
 			<Wrapper>
 				<StyledIcon {...props.iconProps} />
 				<TextWrapper>
-					<Title style={textStyle} numberOfLines={1}>
+					<Title style={titleStyle} numberOfLines={1}>
 						{title}
 					</Title>
 					{subtitle && <SubTitle>{subtitle}</SubTitle>}

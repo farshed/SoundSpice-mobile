@@ -1,10 +1,18 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { withTheme } from 'styled-components/native';
+import { connect } from 'react-redux';
 import PlaylistsScreen from '../screens/PlaylistsScreen';
 import ArtistsScreen from '../screens/ArtistsScreen';
 import AlbumsScreen from '../screens/AlbumsScreen';
 import FoldersScreen from '../screens/FoldersScreen';
+
+const screenProps = {
+	playlists: { component: PlaylistsScreen, options: { title: 'Playlists' } },
+	artists: { component: ArtistsScreen, options: { title: 'Artists' } },
+	albums: { component: AlbumsScreen, options: { title: 'Albums' } },
+	folders: { component: FoldersScreen, options: { title: 'Folders' } }
+};
 
 function TopMaterialTabNav(props) {
 	const TopTabs = createMaterialTopTabNavigator();
@@ -31,19 +39,18 @@ function TopMaterialTabNav(props) {
 		},
 		allowFontScaling: false
 	};
-
+	console.log(props.tabOrder);
 	return (
 		<TopTabs.Navigator tabBarOptions={tabBarOptions}>
-			<TopTabs.Screen
-				name="playlists"
-				component={PlaylistsScreen}
-				options={{ title: 'Playlists' }}
-			/>
-			<TopTabs.Screen name="artists" component={ArtistsScreen} options={{ title: 'Artists' }} />
-			<TopTabs.Screen name="albums" component={AlbumsScreen} options={{ title: 'Albums' }} />
-			<TopTabs.Screen name="folders" component={FoldersScreen} options={{ title: 'Folders' }} />
+			{props.tabOrder.map((tab) => (
+				<TopTabs.Screen name={tab} {...screenProps[tab]} key={tab} />
+			))}
 		</TopTabs.Navigator>
 	);
 }
 
-export default withTheme(TopMaterialTabNav);
+function mapStateToProps(state) {
+	return { tabOrder: state.settings.topTabs };
+}
+
+export default connect(mapStateToProps, null)(withTheme(TopMaterialTabNav));

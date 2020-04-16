@@ -19,6 +19,7 @@
 		"react": "16.11.0",
 		"react-native": "0.62.1",
 		"react-native-dialog": "^5.6.0",
+		"react-native-draggable-flatlist": "^2.3.2",
 		"react-native-gesture-handler": "^1.6.1",
 		"react-native-get-music-files": "git+https://github.com/cinder92/react-native-get-music-files.git#master",
 		"react-native-get-music-files-v3dev-test": "^3.1.2",

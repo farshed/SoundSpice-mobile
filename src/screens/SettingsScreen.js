@@ -72,6 +72,13 @@ function SettingsScreen(props) {
 			/>
 
 			<ListItem
+				iconProps={icons.rearrange}
+				title={settings.changeOrder.title}
+				onPress={() => props.navigation.navigate('tab-order')}
+				subtitle={settings.changeOrder.subtitle}
+			/>
+
+			<ListItem
 				iconProps={icons.bug}
 				title={settings.reportABug.title}
 				onPress={onPressReport}
@@ -136,6 +143,11 @@ const icons = {
 	musicFile: {
 		name: 'rocket',
 		type: 'simple-line-icon',
+		size: 26
+	},
+	rearrange: {
+		name: 'menu',
+		type: 'feather',
 		size: 26
 	},
 	about: {
