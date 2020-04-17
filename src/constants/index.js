@@ -1,4 +1,4 @@
-export const scanMessage = 'Looking for music';
+export const scanMessage = 'finding music';
 
 export const settings = {
 	darkMode: {

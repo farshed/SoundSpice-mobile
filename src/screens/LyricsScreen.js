@@ -6,37 +6,31 @@ import RenderActivityIndicator from '../components/RenderActivityIndicator';
 import * as actions from '../actions';
 import { contrastColor, contrastTransColor } from '../themes/styles';
 
-const ScreenHeight = Dimensions.get('window').height;
 const ScreenWidth = Dimensions.get('window').width;
 
 function LyricsScreen(props) {
-	const { currentTrack, navigation } = props;
 	useEffect(() => {
-		let unsubscribe1 = navigation.addListener('focus', onFocus);
-		// let unsubscribe2 = navigation.addListener('blur', props.resetLyrics);
-		return () => {
-			unsubscribe1();
-			// unsubscribe2();
-		};
-	}, [navigation]);
+		let unsubscribe = props.navigation.addListener('focus', onFocus);
+		return unsubscribe;
+	}, [props.navigation]);
 
 	function onFocus() {
-		props.hideFooter();
-		const { title, artist, index } = currentTrack;
-		if (!currentTrack.lyrics) props.fetchLyrics({ title, artist, index });
+		if (!props.currentLyrics) {
+			const { title, artist } = props.currentTrack;
+			props.fetchLyrics({ title, artist });
+		}
 	}
 
 	function renderLyrics() {
-		let { title, artist, lyrics } = currentTrack;
-		let { currentLyrics } = props;
-		return lyrics || currentLyrics ? (
+		let { title, artist, lyrics } = props.currentLyrics;
+		return lyrics ? (
 			<ScrollView>
 				<Title>{title}</Title>
 				<Artist>{artist}</Artist>
-				<Lyrics>{lyrics || currentLyrics}</Lyrics>
+				<Lyrics>{lyrics}</Lyrics>
 			</ScrollView>
 		) : (
-			<RenderActivityIndicator text="fetching lyrics..." />
+			<RenderActivityIndicator text="fetching lyrics" />
 		);
 	}
 
@@ -85,7 +79,7 @@ const Artist = styled.Text`
 const Lyrics = styled.Text`
 	font-family: 'CircularLight';
 	font-size: 15px;
-	margin: 0 20px ${ScreenHeight / 8}px 20px;
+	margin: 0 20px 50px 20px;
 	line-height: 22px;
 	color: ${contrastColor};
 `;

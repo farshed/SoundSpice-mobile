@@ -4,11 +4,6 @@ export default function (state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'get_media_success':
 			return { mediaLoaded: true, mediaFiles: action.payload };
-		case 'get_lyrics_success': {
-			let newMedia = [...state.mediaFiles];
-			newMedia[action.payload.index].lyrics = action.payload.lyrics;
-			return { ...state, mediaFiles: newMedia };
-		}
 		case 'rename_track': {
 			let mediaArr = [...state.mediaFiles];
 			let index = mediaArr.findIndex((i) => i.id === action.payload.id);

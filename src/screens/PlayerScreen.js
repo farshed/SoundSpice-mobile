@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Dimensions } from 'react-native';
-import NetInfo from '@react-native-community/netinfo';
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import ProgressSlider from '../components/ProgressSlider';
 import PlaybackControl from '../components/PlaybackControl';
 import CoverArt from '../components/CoverArt';
 import Icon from '../components/Icon';
-import RenderToast from '../components/RenderToast';
+import OptionsMenu from '../components/OptionsMenu';
 
 const PlayerWidth = Dimensions.get('window').width * 0.85;
 
@@ -20,19 +19,13 @@ function PlayerScreen(props) {
 		return unsubscribe;
 	}, [navigation]);
 
-	async function onLyricsPress() {
-		let { isConnected } = await NetInfo.fetch();
-		if (isConnected || currentTrack.lyrics) navigation.navigate('lyrics');
-		else RenderToast('No internet connection');
-	}
-
 	return (
 		<Background source={{ uri: currentTrack.artwork }} blurRadius={25}>
 			<Gradient colors={['rgba(0, 0, 0, 0)', '#000']} location={[0.75, 1]}>
 				<Header>
 					<StyledIcon {...icons.collapse} onPress={navigation.goBack} />
 					<HeaderText>now playing</HeaderText>
-					<StyledIcon {...icons.options} />
+					<OptionsMenu target={<StyledIcon {...icons.options} />} currentItem={currentTrack} />
 				</Header>
 				<Wrapper>
 					<CoverArt src={currentTrack.artwork} />
