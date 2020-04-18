@@ -5,6 +5,6 @@ export const clearCache = async () => {
 		const { unlink, dirs } = RNFetchBlob.fs;
 		await unlink(dirs.DocumentDir + '/.soundspice');
 	} catch (e) {
-		console.log(e);
+		// console.log(e);
 	}
 };

@@ -43,8 +43,7 @@ function PlayerScreen(props) {
 
 function mapStateToProps(state) {
 	return {
-		currentTrack: state.playback.currentTrack,
-		playbackMode: state.playback.playbackMode
+		currentTrack: state.playback.currentTrack
 	};
 }
 

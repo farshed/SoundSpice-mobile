@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Icon from '../components/Icon';
+import { getRandomNumber } from '../utils';
 
 const WrapperWidth = Dimensions.get('window').width * 0.85;
 
@@ -14,30 +15,35 @@ function PlaybackControl(props) {
 		currentTrack,
 		playbackStatus,
 		setPlaybackStatus,
-		playbackMode
+		loop,
+		shuffle
 	} = props;
 
 	function skipForward() {
-		setCurrentTrack(
-			currentTrack.index === media.length - 1 ? media[0] : media[currentTrack.index + 1]
-		);
+		let nextTrack = shuffle
+			? media[getRandomNumber(0, media.length)]
+			: currentTrack.index === media.length - 1
+			? media[0]
+			: media[currentTrack.index + 1];
+		setCurrentTrack(nextTrack);
 	}
 
 	function skipBackward() {
-		setCurrentTrack(
-			currentTrack.index === 0 ? media[media.length - 1] : media[currentTrack.index - 1]
-		);
-	}
-
-	function toggleMode() {
-		props.togglePlaybackMode(playbackMode === 'repeat_all' ? 'repeat_one' : 'repeat_all');
+		let nextTrack = shuffle
+			? media[getRandomNumber(0, media.length)]
+			: currentTrack.index === 0
+			? media[media.length - 1]
+			: media[currentTrack.index - 1];
+		setCurrentTrack(nextTrack);
 	}
 
 	return (
 		<MainWrapper>
-			<IconWrapper>
-				<TransIcon {...icons.shuffle} />
-			</IconWrapper>
+			<TouchableWithoutFeedback onPress={() => props.setShuffle(!shuffle)}>
+				<IconWrapper>
+					{shuffle ? <TransIcon {...icons.shuffle} /> : <DisabledIcon {...icons.shuffle} />}
+				</IconWrapper>
+			</TouchableWithoutFeedback>
 			<StyledIcon {...icons.skipBackward} onPress={skipBackward} />
 			{playbackStatus === 'playing' ? (
 				<TouchableWithoutFeedback onPress={() => setPlaybackStatus('paused')}>
@@ -53,13 +59,9 @@ function PlaybackControl(props) {
 				</TouchableWithoutFeedback>
 			)}
 			<StyledIcon {...icons.skipForward} onPress={skipForward} />
-			<TouchableWithoutFeedback onPress={toggleMode}>
+			<TouchableWithoutFeedback onPress={() => props.setLoop(!loop)}>
 				<IconWrapper>
-					{playbackMode === 'repeat_one' ? (
-						<TransIcon {...icons.loopOne} />
-					) : (
-						<TransIcon {...icons.loop} />
-					)}
+					{loop ? <TransIcon {...icons.loopOne} /> : <TransIcon {...icons.loop} />}
 				</IconWrapper>
 			</TouchableWithoutFeedback>
 		</MainWrapper>
@@ -71,7 +73,8 @@ function mapStateToProps(state) {
 		media: state.media.mediaFiles,
 		currentTrack: state.playback.currentTrack,
 		playbackStatus: state.player.playbackStatus,
-		playbackMode: state.playback.playbackMode
+		loop: state.playback.loop,
+		shuffle: state.playback.shuffle
 	};
 }
 
@@ -101,6 +104,10 @@ const StyledIcon = styled(Icon)`
 
 const TransIcon = styled(Icon)`
 	color: rgba(255, 255, 255, 0.75);
+`;
+
+const DisabledIcon = styled(Icon)`
+	color: rgba(255, 255, 255, 0.3);
 `;
 
 const IconWrapper = styled.View`

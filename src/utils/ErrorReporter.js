@@ -5,7 +5,7 @@ export default function (e) {
 		'Oops! an error ocurred',
 		'Send error log to developers?',
 		[{ text: 'Send', onPress: () => mailError(e) }],
-		{ cancelable: false }
+		{ cancelable: true }
 	);
 }
 

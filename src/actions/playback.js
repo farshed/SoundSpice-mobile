@@ -23,7 +23,10 @@ export const setPlaybackStatus = (status) => {
 	return { type: 'playback_status', payload: status };
 };
 
-export const togglePlaybackMode = (newMode) => {
-	RenderToast(newMode === 'repeat_all' ? 'Loop all tracks' : 'Loop this track');
-	return { type: 'toggle_playback_mode', payload: newMode };
+export const setLoop = (isLoop) => {
+	return { type: 'set_loop', payload: isLoop };
+};
+
+export const setShuffle = (isShuffle) => {
+	return { type: 'set_shuffle', payload: isShuffle };
 };

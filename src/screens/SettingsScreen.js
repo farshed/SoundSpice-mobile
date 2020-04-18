@@ -34,7 +34,7 @@ function SettingsScreen(props) {
 
 	function onPressReport() {
 		Linking.openURL(
-			'mailto:faisalarshed28@gmail.com?subject=SoundSpice bug report&body=Device Manufacturer & Model: \n\nYour issue: %20'
+			'mailto:faisalarshed28@gmail.com?subject=SoundSpice bug report&body=Device Manufacturer %26 Model: \n\nYour issue: %20'
 		);
 	}
 

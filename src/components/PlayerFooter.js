@@ -69,7 +69,7 @@ const MainWrapper = styled.View`
 const Thumbnail = styled.Image`
 	height: 42px;
 	width: 42px;
-	border-radius: 25px;
+	border-radius: 21px;
 `;
 
 const TextWrapper = styled.View`
