@@ -1,6 +1,7 @@
 import { store } from '../store';
 // import { PITCH_ALGORITHM_MUSIC } from 'react-native-track-player';
 
+// For testing
 // export default function cleanupMedia(media) {
 // 	if (!Array.isArray(media) || media.length === 0) return [];
 // 	let newMedia = [];
@@ -16,19 +17,14 @@ import { store } from '../store';
 // 			folderName = getFolder(mediaFiles[i].path);
 // 			newMedia.push({
 // 				id: mediaFiles[i].duration + i,
-// 				// filename: mediaFiles[i].fileName,
 // 				duration: mediaFiles[i].duration,
 // 				url: mediaFiles[i].path,
-// 				// title: mediaFiles[i].fileName.replace(/.mp3|.aac|.wav|.amr|.flac/, ''),
 // 				title: mediaFiles[i].title,
-// 				// artwork: mediaFiles[i].cover || 'cover',
 // 				artwork: mediaFiles[i].path || 'cover',
-// 				// artist: mediaFiles[i].author === '<unknown>' ? 'unknown' : mediaFiles[i].author,
 // 				artist: mediaFiles[i].artist === '<unknown>' ? 'unknown' : mediaFiles[i].artist,
 // 				album: mediaFiles[i].album === '<unknown>' ? 'unknown' : mediaFiles[i].album,
 // 				index: i,
 // 				folder: folderName
-// 				// pitchAlgorithm: PITCH_ALGORITHM_MUSIC
 // 			});
 // 		}
 // 	}
