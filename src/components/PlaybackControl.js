@@ -55,8 +55,11 @@ function PlaybackControl(props) {
 			<StyledIcon {...icons.skipForward} onPress={skipForward} />
 			<TouchableWithoutFeedback onPress={toggleMode}>
 				<IconWrapper>
-					<TransIcon {...icons.loop} />
-					{playbackMode === 'repeat_one' && <LoopBadge>1</LoopBadge>}
+					{playbackMode === 'repeat_one' ? (
+						<TransIcon {...icons.loopOne} />
+					) : (
+						<TransIcon {...icons.loop} />
+					)}
 				</IconWrapper>
 			</TouchableWithoutFeedback>
 		</MainWrapper>
@@ -78,7 +81,7 @@ const MainWrapper = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: ${WrapperWidth}px;
+	width: ${WrapperWidth + 10}px;
 `;
 
 const PlayWrapper = styled.View`
@@ -93,6 +96,7 @@ const PlayWrapper = styled.View`
 
 const StyledIcon = styled(Icon)`
 	color: #ffffff;
+	padding: 5px;
 `;
 
 const TransIcon = styled(Icon)`
@@ -105,15 +109,6 @@ const IconWrapper = styled.View`
 	border-radius: 14px;
 	justify-content: center;
 	align-items: center;
-`;
-
-const LoopBadge = styled.Text`
-	position: absolute;
-	text-align: center;
-	top: 8px;
-	color: rgba(255, 255, 255, 0.75);
-	font-size: 8px;
-	font-family: 'CircularBold';
 `;
 
 const icons = {
@@ -139,8 +134,13 @@ const icons = {
 	},
 	loop: {
 		name: 'repeat',
-		type: 'feather',
-		size: 17
+		type: 'material',
+		size: 22
+	},
+	loopOne: {
+		name: 'repeat-one',
+		type: 'material',
+		size: 22
 	},
 	shuffle: {
 		name: 'shuffle',

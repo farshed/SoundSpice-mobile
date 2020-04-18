@@ -58,6 +58,8 @@ const DialogTitle = styled(Dialog.Title)`
 
 const DialogDescription = styled(Dialog.Description)`
 	font-family: 'ProductSans';
+	margin-left: 10px;
+	margin-right: 10px;
 	color: ${contrastColor};
 `;
 

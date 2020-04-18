@@ -68,7 +68,7 @@ export default connect(mapStateToProps, actions)(OptionsMenu);
 const styles = {
 	menuItemText: {
 		fontFamily: 'ProductSans',
-		fontSize: 15,
+		fontSize: 16,
 		color: 'black'
 	}
 };

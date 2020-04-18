@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, TouchableWithoutFeedback } from 'react-native';
-import styled, { withTheme } from 'styled-components/native';
+import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { useTrackPlayerProgress } from 'react-native-track-player/lib/hooks';
@@ -8,11 +8,12 @@ import * as navigation from '../navigation/NavigationService';
 import ProgressBar from '../components/ProgressBar';
 import Icon from '../components/Icon';
 import { contrastTransColor } from '../themes/styles';
+const placeholder = require('../../assets/placeholder.jpg');
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 function PlayerFooter(props) {
-	const { setPlaybackStatus, playbackStatus, renderFooter, currentTrack, theme } = props;
+	const { setPlaybackStatus, playbackStatus, renderFooter, currentTrack } = props;
 	const { position, duration } = useTrackPlayerProgress(100);
 
 	function togglePlayback() {
@@ -20,9 +21,11 @@ function PlayerFooter(props) {
 	}
 
 	const progress = position / duration;
+	const coverSrc = currentTrack.artwork ? { uri: currentTrack.artwork } : placeholder;
 	return renderFooter && currentTrack.id !== '000' ? (
 		<TouchableWithoutFeedback onPress={() => navigation.navigate('player')}>
 			<MainWrapper>
+				<Thumbnail source={coverSrc} />
 				<TextWrapper>
 					<Title numberOfLines={1}>{currentTrack.title || 'unknown'}</Title>
 					<Artist numberOfLines={1}>{currentTrack.artist || 'unknown'}</Artist>
@@ -48,7 +51,7 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withTheme(PlayerFooter));
+export default connect(mapStateToProps, actions)(PlayerFooter);
 
 const MainWrapper = styled.View`
 	height: 60px;
@@ -58,8 +61,15 @@ const MainWrapper = styled.View`
 	bottom: 50px;
 	flex-direction: row;
 	align-items: center;
+	padding-left: 15px;
 	background-color: ${({ theme }) =>
 		theme.current === 'light' ? theme.foreground : theme.elevatedBG};
+`;
+
+const Thumbnail = styled.Image`
+	height: 42px;
+	width: 42px;
+	border-radius: 25px;
 `;
 
 const TextWrapper = styled.View`
@@ -67,7 +77,7 @@ const TextWrapper = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin-left: 20px;
+	margin-left: 15px;
 `;
 
 const Title = styled.Text`
@@ -80,7 +90,7 @@ const Title = styled.Text`
 const Artist = styled.Text`
 	font-family: 'CircularLight';
 	font-size: 12px;
-	color: white;
+	color: rgba(255, 255, 255, 0.8);
 	width: ${SCREEN_WIDTH / 2}px;
 `;
 

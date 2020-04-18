@@ -20,7 +20,7 @@ function PlayerScreen(props) {
 	}, [navigation]);
 
 	return (
-		<Background source={{ uri: currentTrack.artwork }} blurRadius={25}>
+		<Background source={{ uri: currentTrack.artwork }} blurRadius={40}>
 			<Gradient colors={['rgba(0, 0, 0, 0)', '#000']} location={[0.75, 1]}>
 				<Header>
 					<StyledIcon {...icons.collapse} onPress={navigation.goBack} />

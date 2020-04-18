@@ -6,9 +6,9 @@ import * as actions from '../actions';
 // import { CoverImage } from 'react-native-get-music-files-v3dev-test';
 import Icon from './Icon';
 import { contrastColor, foregroundColor, contrastTransColor } from '../themes/styles';
+const placeholder = require('../../assets/placeholder.jpg');
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const placeholder = require('../../assets/placeholder.jpg');
 
 const RenderTrack = React.memo(
 	(props) => {
@@ -66,7 +66,7 @@ const MainWrapper = styled.View`
 const Thumbnail = styled.Image`
 	height: 50px;
 	width: 50px;
-	border-radius: 3px;
+	border-radius: 2px;
 `;
 
 const TextWrapper = styled.View`

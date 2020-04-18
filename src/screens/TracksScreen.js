@@ -101,7 +101,7 @@ export default connect(mapStateToProps, actions)(TracksScreen);
 
 const StyledIcon = styled(Icon)`
 	color: ${contrastColor};
-	margin-right: 20px;
+	margin-right: 15px;
 `;
 
 const MessageWrapper = styled.View`
