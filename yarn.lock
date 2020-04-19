@@ -4835,6 +4835,11 @@ react-native-draggable-flatlist@^2.3.2:
   resolved "https://registry.yarnpkg.com/react-native-draggable-flatlist/-/react-native-draggable-flatlist-2.3.2.tgz#4d84b2f7298d2426a4e5a95290c3b10861d81bf2"
   integrity sha512-IoVmTwfUX+dvkgmIrJdPkwfgARJDCY+/KGVhYLGUzPvYpIIlcwhv7Vn6430GyEaO9TPsgnSVsOwVprnN16tn3Q==
 
+react-native-ffmpeg@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-ffmpeg/-/react-native-ffmpeg-0.4.4.tgz#9f4dbda53c96078cecbbe83a866d4b535b957131"
+  integrity sha512-MUBV3Xvto1Hl049Y9EaOZdjazkK1ixQzCzPEt1o7V2duSOrM2kJ2o/RiC4rSRgapU2uqYRHMZ6X4JJI7y40qXw==
+
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
@@ -4844,11 +4849,6 @@ react-native-gesture-handler@^1.6.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
-
-react-native-get-music-files-v3dev-test@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-get-music-files-v3dev-test/-/react-native-get-music-files-v3dev-test-3.1.2.tgz#ed5afa94c18a9a26a3a243bc8b8234106f52d708"
-  integrity sha512-wcRHInQIhtbTMeganwQABYgv9KBHIdc21dxwNy4LARdoeKhhDY6fRtAQ6qQ8FFVPqoQFaBN2V88x0TEO8N20GQ==
 
 "react-native-get-music-files@git+https://github.com/cinder92/react-native-get-music-files.git#master":
   version "2.1.0"
