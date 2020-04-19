@@ -1,19 +1,19 @@
 import React from 'react';
 import { Dimensions, TouchableWithoutFeedback } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { withTheme } from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { useTrackPlayerProgress } from 'react-native-track-player/lib/hooks';
 import * as navigation from '../navigation/NavigationService';
 import ProgressBar from '../components/ProgressBar';
 import Icon from '../components/Icon';
-import { contrastTransColor } from '../themes/styles';
+import { contrastColor, elevatedBGColor, contrastTransColor } from '../themes/styles';
 const placeholder = require('../../assets/placeholder.jpg');
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 function PlayerFooter(props) {
-	const { isPlaying, renderFooter, currentTrack } = props;
+	const { isPlaying, renderFooter, currentTrack, theme } = props;
 	const { position, duration } = useTrackPlayerProgress(100);
 
 	function togglePlayback() {
@@ -36,7 +36,10 @@ function PlayerFooter(props) {
 					<StyledIcon {...icons.playIcon} onPress={togglePlayback} />
 				)}
 				<ProgressWrapper>
-					<Progress progress={isNaN(progress) ? 0 : +progress.toFixed(3)} color={'white'} />
+					<Progress
+						progress={isNaN(progress) ? 0 : +progress.toFixed(3)}
+						color={theme.foreground}
+					/>
 				</ProgressWrapper>
 			</MainWrapper>
 		</TouchableWithoutFeedback>
@@ -51,7 +54,7 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(PlayerFooter);
+export default connect(mapStateToProps, actions)(withTheme(PlayerFooter));
 
 const MainWrapper = styled.View`
 	height: 60px;
@@ -62,8 +65,7 @@ const MainWrapper = styled.View`
 	flex-direction: row;
 	align-items: center;
 	padding-left: 15px;
-	background-color: ${({ theme }) =>
-		theme.current === 'light' ? theme.foreground : theme.elevatedBG};
+	background-color: ${elevatedBGColor};
 `;
 
 const Thumbnail = styled.Image`
@@ -83,19 +85,19 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
 	font-family: 'CircularBold';
 	font-size: 14px;
-	color: white;
+	color: ${contrastColor};
 	width: ${SCREEN_WIDTH / 2}px;
 `;
 
 const Artist = styled.Text`
 	font-family: 'CircularLight';
 	font-size: 12px;
-	color: rgba(255, 255, 255, 0.8);
+	color: ${contrastTransColor(0.8)};
 	width: ${SCREEN_WIDTH / 2}px;
 `;
 
 const StyledIcon = styled(Icon)`
-	color: white;
+	color: ${contrastColor};
 	padding: 18px;
 `;
 
@@ -107,7 +109,7 @@ const ProgressWrapper = styled.View`
 const Progress = styled(ProgressBar)`
 	height: 2px;
 	width: ${SCREEN_WIDTH}px;
-	background-color: ${contrastTransColor(0.15)};
+	background-color: ${contrastTransColor(0.1)};
 `;
 
 const icons = {
