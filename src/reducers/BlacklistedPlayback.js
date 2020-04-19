@@ -1,10 +1,10 @@
-const INITIAL_STATE = { playbackStatus: 'paused' };
+const INITIAL_STATE = { isPlaying: false };
 
-export default function(state = INITIAL_STATE, action) {
-    switch(action.type) {
-        case 'playback_status':
-            return { ...state, playbackStatus: action.payload };
-        default:
-            return state;
-    }
+export default function (state = INITIAL_STATE, action) {
+	switch (action.type) {
+		case 'set_playback':
+			return { ...state, isPlaying: action.payload };
+		default:
+			return state;
+	}
 }

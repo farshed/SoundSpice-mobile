@@ -1,1 +1,1 @@
-export const landingSite = '';
+export const repoUrl = 'https://github.com/farshed/SoundSpice-mobile';

@@ -13,11 +13,11 @@ const placeholder = require('../../assets/placeholder.jpg');
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 function PlayerFooter(props) {
-	const { setPlaybackStatus, playbackStatus, renderFooter, currentTrack } = props;
+	const { isPlaying, renderFooter, currentTrack } = props;
 	const { position, duration } = useTrackPlayerProgress(100);
 
 	function togglePlayback() {
-		setPlaybackStatus(playbackStatus === 'paused' ? 'playing' : 'paused');
+		props.setPlayback(!isPlaying);
 	}
 
 	const progress = position / duration;
@@ -30,7 +30,7 @@ function PlayerFooter(props) {
 					<Title numberOfLines={1}>{currentTrack.title || 'unknown'}</Title>
 					<Artist numberOfLines={1}>{currentTrack.artist || 'unknown'}</Artist>
 				</TextWrapper>
-				{playbackStatus === 'playing' ? (
+				{isPlaying ? (
 					<StyledIcon {...icons.pauseIcon} onPress={togglePlayback} />
 				) : (
 					<StyledIcon {...icons.playIcon} onPress={togglePlayback} />
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
 	return {
 		renderFooter: state.footer.footerVisible,
 		currentTrack: state.playback.currentTrack,
-		playbackStatus: state.player.playbackStatus
+		isPlaying: state.player.isPlaying
 	};
 }
 

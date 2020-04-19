@@ -1,23 +1,20 @@
 import React from 'react';
-import { TouchableOpacity, Linking, Dimensions } from 'react-native';
+import { TouchableOpacity, Linking } from 'react-native';
 import styled from 'styled-components/native';
-import { landingSite } from '../constants/urls';
+import { repoUrl } from '../constants/urls';
 import { contrastColor, contrastTransColor, foregroundColor } from '../themes/styles';
-
-const ScreenHeight = Dimensions.get('window').height;
 
 function AboutScreen() {
 	return (
 		<Wrapper>
 			<Heading>SoundSpice</Heading>
-			<Detail>Version 4.0.1.18</Detail>
+			<DetailTrans>Version 3.0.4.20</DetailTrans>
 			<Heading>Developed by</Heading>
-			<Detail>Faisal Arshed</Detail>
-			<WebsiteWrapper>
-				<TouchableOpacity onPress={() => Linking.openURL(landingSite)}>
-					<WebsiteDetail>website</WebsiteDetail>
-				</TouchableOpacity>
-			</WebsiteWrapper>
+			<DetailTrans>Faisal Arshed</DetailTrans>
+			<Detail>Source code available under MIT License at</Detail>
+			<TouchableOpacity onPress={() => Linking.openURL(repoUrl)}>
+				<Link>Github</Link>
+			</TouchableOpacity>
 		</Wrapper>
 	);
 }
@@ -30,12 +27,6 @@ const Wrapper = styled.View`
 	align-items: center;
 `;
 
-const WebsiteWrapper = styled.View`
-	flex-direction: row;
-	justify-content: center;
-	margin-bottom: ${ScreenHeight / 15}px;
-`;
-
 const Heading = styled.Text`
 	font-family: 'ProductSans';
 	font-size: 18px;
@@ -43,16 +34,23 @@ const Heading = styled.Text`
 	color: ${contrastColor};
 `;
 
-const Detail = styled.Text`
+const DetailTrans = styled.Text`
 	font-family: 'ProductSans';
 	font-size: 16px;
 	margin-bottom: 40px;
 	color: ${contrastTransColor(0.75)};
 `;
 
-const WebsiteDetail = styled.Text`
+const Link = styled.Text`
 	font-family: 'ProductSans';
 	font-size: 16px;
 	margin-bottom: 40px;
 	color: ${foregroundColor};
+`;
+
+const Detail = styled.Text`
+	font-family: 'ProductSans';
+	font-size: 16px;
+	margin-bottom: 10px;
+	color: ${contrastColor};
 `;

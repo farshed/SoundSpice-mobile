@@ -5,7 +5,7 @@ import { getRandomNumber } from '../utils';
 async function backgroundPlayback(track) {
 	await TrackPlayer.reset();
 	await TrackPlayer.add(track);
-	store.dispatch({ type: 'playback_status', payload: 'playing' });
+	store.dispatch({ type: 'set_playback', payload: true });
 	TrackPlayer.play();
 	store.dispatch({ type: 'current_track', payload: track });
 }
@@ -13,12 +13,12 @@ async function backgroundPlayback(track) {
 module.exports = async function () {
 	TrackPlayer.addEventListener('remote-play', () => {
 		TrackPlayer.play();
-		store.dispatch({ type: 'playback_status', payload: 'playing' });
+		store.dispatch({ type: 'set_playback', payload: true });
 	});
 
 	TrackPlayer.addEventListener('remote-pause', () => {
 		TrackPlayer.pause();
-		store.dispatch({ type: 'playback_status', payload: 'paused' });
+		store.dispatch({ type: 'set_playback', payload: false });
 	});
 
 	TrackPlayer.addEventListener('remote-next', () => {

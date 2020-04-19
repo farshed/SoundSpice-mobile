@@ -3,6 +3,7 @@ import { ScrollView, Switch, Linking } from 'react-native';
 import { withTheme } from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import Share from 'react-native-share';
 import ListItem from '../components/ListItem';
 import InputDialog from '../components/InputDialog';
 import ConfirmDialog from '../components/ConfirmDialog';
@@ -36,6 +37,13 @@ function SettingsScreen(props) {
 		Linking.openURL(
 			'mailto:faisalarshed28@gmail.com?subject=SoundSpice bug report&body=Device Manufacturer %26 Model: \n\nYour issue: %20'
 		);
+	}
+
+	function onPressShare() {
+		Share.open({
+			message:
+				'Hey! Check out SoundSpice\nhttps://play.google.com/store/apps/details?id=com.vynilla'
+		});
 	}
 
 	const { current, elevatedBG, foreground, fgTrans } = props.theme;
@@ -84,6 +92,8 @@ function SettingsScreen(props) {
 				onPress={onPressReport}
 				subtitle={settings.reportABug.subtitle}
 			/>
+
+			<ListItem iconProps={icons.share} title={settings.share} onPress={onPressShare} />
 
 			<ListItem
 				iconProps={icons.about}
@@ -158,6 +168,11 @@ const icons = {
 	bug: {
 		name: 'bug',
 		type: 'entypo',
+		size: 26
+	},
+	share: {
+		name: 'share-2',
+		type: 'feather',
 		size: 26
 	}
 };

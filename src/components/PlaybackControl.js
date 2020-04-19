@@ -4,20 +4,13 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Icon from '../components/Icon';
+import RenderToast from '../components/RenderToast';
 import { getRandomNumber } from '../utils';
 
 const WrapperWidth = Dimensions.get('window').width * 0.85;
 
 function PlaybackControl(props) {
-	const {
-		setCurrentTrack,
-		media,
-		currentTrack,
-		playbackStatus,
-		setPlaybackStatus,
-		loop,
-		shuffle
-	} = props;
+	const { media, currentTrack, isPlaying, loop, shuffle } = props;
 
 	function skipForward() {
 		let nextTrack = shuffle
@@ -25,7 +18,7 @@ function PlaybackControl(props) {
 			: currentTrack.index === media.length - 1
 			? media[0]
 			: media[currentTrack.index + 1];
-		setCurrentTrack(nextTrack);
+		props.setCurrentTrack(nextTrack);
 	}
 
 	function skipBackward() {
@@ -34,32 +27,34 @@ function PlaybackControl(props) {
 			: currentTrack.index === 0
 			? media[media.length - 1]
 			: media[currentTrack.index - 1];
-		setCurrentTrack(nextTrack);
+		props.setCurrentTrack(nextTrack);
+	}
+
+	function onShufflePress() {
+		RenderToast(`Shuffle: ${shuffle ? 'Off' : 'On'}`);
+		props.setShuffle(!shuffle);
+	}
+
+	function onLoopPress() {
+		RenderToast(`Loop ${loop ? 'all tracks' : 'this track'}`);
+		props.setLoop(!loop);
 	}
 
 	return (
 		<MainWrapper>
-			<TouchableWithoutFeedback onPress={() => props.setShuffle(!shuffle)}>
+			<TouchableWithoutFeedback onPress={onShufflePress}>
 				<IconWrapper>
 					{shuffle ? <TransIcon {...icons.shuffle} /> : <DisabledIcon {...icons.shuffle} />}
 				</IconWrapper>
 			</TouchableWithoutFeedback>
 			<StyledIcon {...icons.skipBackward} onPress={skipBackward} />
-			{playbackStatus === 'playing' ? (
-				<TouchableWithoutFeedback onPress={() => setPlaybackStatus('paused')}>
-					<PlayWrapper>
-						<StyledIcon {...icons.pause} />
-					</PlayWrapper>
-				</TouchableWithoutFeedback>
-			) : (
-				<TouchableWithoutFeedback onPress={() => setPlaybackStatus('playing')}>
-					<PlayWrapper>
-						<StyledIcon {...icons.play} />
-					</PlayWrapper>
-				</TouchableWithoutFeedback>
-			)}
+			<TouchableWithoutFeedback onPress={() => props.setPlayback(!isPlaying)}>
+				<PlayWrapper>
+					{isPlaying ? <StyledIcon {...icons.pause} /> : <StyledIcon {...icons.play} />}
+				</PlayWrapper>
+			</TouchableWithoutFeedback>
 			<StyledIcon {...icons.skipForward} onPress={skipForward} />
-			<TouchableWithoutFeedback onPress={() => props.setLoop(!loop)}>
+			<TouchableWithoutFeedback onPress={onLoopPress}>
 				<IconWrapper>
 					{loop ? <TransIcon {...icons.loopOne} /> : <TransIcon {...icons.loop} />}
 				</IconWrapper>
@@ -72,7 +67,7 @@ function mapStateToProps(state) {
 	return {
 		media: state.media.mediaFiles,
 		currentTrack: state.playback.currentTrack,
-		playbackStatus: state.player.playbackStatus,
+		isPlaying: state.player.isPlaying,
 		loop: state.playback.loop,
 		shuffle: state.playback.shuffle
 	};

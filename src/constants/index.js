@@ -32,5 +32,6 @@ export const settings = {
 	changeOrder: {
 		title: 'Rearrange library tabs',
 		subtitle: 'Change the order of tabs in the library'
-	}
+	},
+	share: 'Share SoundSpice'
 };

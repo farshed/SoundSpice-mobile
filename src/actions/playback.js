@@ -1,26 +1,21 @@
 import TrackPlayer from 'react-native-track-player';
-import RenderToast from '../components/RenderToast';
-import { Alert } from 'react-native';
+import errorReporter from '../utils/ErrorReporter';
 
 export const setCurrentTrack = (currentTrack) => async (dispatch) => {
 	try {
 		await TrackPlayer.reset();
 		await TrackPlayer.add(currentTrack);
-		dispatch({ type: 'playback_status', payload: 'playing' });
+		dispatch({ type: 'set_playback', payload: true });
 		TrackPlayer.play();
 		dispatch({ type: 'current_track', payload: currentTrack });
 	} catch (e) {
-		Alert.alert(JSON.stringify(e));
+		errorReporter(e);
 	}
 };
 
-export const setPlaybackStatus = (status) => {
-	if (status === 'paused') {
-		TrackPlayer.pause();
-	} else if (status === 'playing') {
-		TrackPlayer.play();
-	}
-	return { type: 'playback_status', payload: status };
+export const setPlayback = (isPlaying) => {
+	isPlaying ? TrackPlayer.play() : TrackPlayer.pause();
+	return { type: 'set_playback', payload: isPlaying };
 };
 
 export const setLoop = (isLoop) => {
