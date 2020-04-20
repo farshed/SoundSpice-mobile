@@ -6,8 +6,9 @@ import * as actions from '../actions';
 import Icon from '../components/Icon';
 import RenderToast from '../components/RenderToast';
 import { getRandomNumber } from '../utils';
+import { contrastColor, contrastTransColor } from '../themes/styles';
 
-const WrapperWidth = Dimensions.get('window').width * 0.85;
+const WrapperWidth = Dimensions.get('window').width * 0.82;
 
 function PlaybackControl(props) {
 	const { media, currentTrack, isPlaying, loop, shuffle } = props;
@@ -89,20 +90,20 @@ const PlayWrapper = styled.View`
 	border-radius: 30px;
 	width: 60px;
 	height: 60px;
-	border-color: #ffffff;
+	border-color: ${contrastColor};
 `;
 
 const StyledIcon = styled(Icon)`
-	color: #ffffff;
+	color: ${contrastColor};
 	padding: 5px;
 `;
 
 const TransIcon = styled(Icon)`
-	color: rgba(255, 255, 255, 0.75);
+	color: ${contrastTransColor(0.75)};
 `;
 
 const DisabledIcon = styled(Icon)`
-	color: rgba(255, 255, 255, 0.35);
+	color: ${contrastTransColor(0.35)};
 `;
 
 const IconWrapper = styled.View`

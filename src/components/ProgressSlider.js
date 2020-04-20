@@ -1,13 +1,14 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { withTheme } from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import TrackPlayer, { ProgressComponent } from 'react-native-track-player';
 import Slider from 'react-native-slider';
+import { contrastTransColor } from '../themes/styles';
 
 const ScreenWidth = Dimensions.get('window').width;
-const SliderWidth = ScreenWidth * 0.85;
+const SliderWidth = ScreenWidth * 0.82;
 
 class ProgressSlider extends ProgressComponent {
 	msToSec(ms) {
@@ -38,14 +39,14 @@ class ProgressSlider extends ProgressComponent {
 	};
 
 	render() {
-		const { currentTrack } = this.props;
+		const { currentTrack, theme } = this.props;
 		return (
 			<Wrapper>
 				<Slider
 					value={this.getProgress()}
 					style={styles.sliderStyle}
-					minimumTrackTintColor="#FFFFFF"
-					maximumTrackTintColor="rgba(255, 255, 255, 0.35)"
+					minimumTrackTintColor={theme.contrast}
+					maximumTrackTintColor={`${theme.contrastTrans}0.35)`}
 					thumbTouchSize={styles.thumbSize}
 					trackStyle={styles.barStyle}
 					thumbStyle={styles.thumbStyle}
@@ -64,7 +65,7 @@ function mapStateToProps({ playback }) {
 	return { currentTrack: playback.currentTrack };
 }
 
-export default connect(mapStateToProps, actions)(ProgressSlider);
+export default connect(mapStateToProps, actions)(withTheme(ProgressSlider));
 
 const Wrapper = styled.View`
 	flex-direction: column;
@@ -82,7 +83,7 @@ const TimeWrapper = styled.View`
 const Time = styled.Text`
 	font-family: 'ProductSans';
 	font-size: 12px;
-	color: rgba(255, 255, 255, 0.75);
+	color: ${contrastTransColor(0.75)};
 `;
 
 const styles = {

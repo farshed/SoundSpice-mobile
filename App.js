@@ -10,10 +10,10 @@ export default function App() {
 	const [timePassed, setTimePassed] = useState(false);
 
 	useEffect(() => {
-		if (Text.defaultProps == null) Text.defaultProps = {};
-		Text.defaultProps.allowFontScaling = false;
 		setTimeout(() => setTimePassed(true), 1000);
 		store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
+		if (Text.defaultProps == null) Text.defaultProps = {};
+		Text.defaultProps.allowFontScaling = false;
 		console.disableYellowBox = true;
 	});
 

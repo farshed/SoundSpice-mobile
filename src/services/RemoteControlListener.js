@@ -1,13 +1,15 @@
 import TrackPlayer from 'react-native-track-player';
 import { store } from '../store';
 import { getRandomNumber } from '../utils';
+import RenderToast from '../components/RenderToast';
 
 async function backgroundPlayback(track) {
 	await TrackPlayer.reset();
 	await TrackPlayer.add(track);
-	store.dispatch({ type: 'set_playback', payload: true });
-	TrackPlayer.play();
 	store.dispatch({ type: 'current_track', payload: track });
+	TrackPlayer.play();
+	store.dispatch({ type: 'set_playback', payload: true });
+	RenderToast(track.title);
 }
 
 module.exports = async function () {

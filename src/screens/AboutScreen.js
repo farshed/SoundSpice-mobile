@@ -42,7 +42,7 @@ const DetailTrans = styled.Text`
 `;
 
 const Link = styled.Text`
-	font-family: 'ProductSans';
+	font-family: 'ProductSansBold';
 	font-size: 16px;
 	margin-bottom: 40px;
 	color: ${foregroundColor};

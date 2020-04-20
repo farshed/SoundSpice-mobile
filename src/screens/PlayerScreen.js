@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Dimensions } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { withTheme } from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -9,19 +9,20 @@ import PlaybackControl from '../components/PlaybackControl';
 import CoverArt from '../components/CoverArt';
 import Icon from '../components/Icon';
 import OptionsMenu from '../components/OptionsMenu';
+import { backgroundColor, bgTransColor, contrastTransColor, contrastColor } from '../themes/styles';
 
-const PlayerWidth = Dimensions.get('window').width * 0.85;
+const PlayerWidth = Dimensions.get('window').width * 0.82;
 
 function PlayerScreen(props) {
-	const { navigation, currentTrack } = props;
+	const { navigation, currentTrack, theme } = props;
 	useEffect(() => {
 		let unsubscribe = navigation.addListener('focus', props.hideFooter);
 		return unsubscribe;
 	}, [navigation]);
-
+	// location={[0.5, 1]}
 	return (
 		<Background source={{ uri: currentTrack.artwork }} blurRadius={40}>
-			<Gradient colors={['rgba(0, 0, 0, 0)', '#000']} location={[0.75, 1]}>
+			<Gradient colors={[`${theme.bgTrans}0.35)`, `${theme.bgTrans}0.75)`]}>
 				<Header>
 					<StyledIcon {...icons.collapse} onPress={navigation.goBack} />
 					<HeaderText>now playing</HeaderText>
@@ -47,18 +48,18 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(PlayerScreen);
+export default connect(mapStateToProps, actions)(withTheme(PlayerScreen));
 
 const Gradient = styled(LinearGradient)`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.15);
+	/* background-color: ${bgTransColor(0.15)}; */
 `;
 
 const Background = styled.ImageBackground`
 	flex: 1;
-	background-color: black;
+	background-color: ${backgroundColor};
 `;
 
 const Header = styled.View`
@@ -72,7 +73,7 @@ const Header = styled.View`
 const HeaderText = styled.Text`
 	font-family: 'Circular';
 	font-size: 15px;
-	color: rgba(255, 255, 255, 0.75);
+	color: ${contrastTransColor(0.75)};
 `;
 
 const Wrapper = styled.View`
@@ -89,7 +90,7 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
 	font-family: 'CircularBold';
 	font-size: 18px;
-	color: white;
+	color: ${contrastColor};
 	width: ${PlayerWidth}px;
 	text-align: center;
 `;
@@ -98,13 +99,13 @@ const Artist = styled.Text`
 	font-family: 'CircularLight';
 	font-size: 15px;
 	margin-top: 4px;
-	color: rgba(255, 255, 255, 0.75);
+	color: ${contrastTransColor(0.75)};
 	width: ${PlayerWidth}px;
 	text-align: center;
 `;
 
 const StyledIcon = styled(Icon)`
-	color: rgba(255, 255, 255, 0.75);
+	color: ${contrastTransColor(0.75)};
 	padding: 5px;
 `;
 
