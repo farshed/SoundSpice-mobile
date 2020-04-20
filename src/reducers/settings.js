@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
 	foldersToSkip: ['whatsapp audio'],
-	theme: 'dark',
+	theme: 'light',
 	topTabs: ['playlists', 'artists', 'albums', 'folders']
 };
 
