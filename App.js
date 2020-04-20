@@ -8,11 +8,12 @@ import SplashScreen from './src/screens/SplashScreen';
 
 export default function App() {
 	const [timePassed, setTimePassed] = useState(false);
+
 	useEffect(() => {
 		if (Text.defaultProps == null) Text.defaultProps = {};
 		Text.defaultProps.allowFontScaling = false;
 		setTimeout(() => setTimePassed(true), 1000);
-		store.dispatch({ type: 'playback_status', payload: 'paused' }); // To make sure currentTrack is paused at startup
+		store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
 		console.disableYellowBox = true;
 	});
 
