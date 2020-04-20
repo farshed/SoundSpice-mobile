@@ -1,15 +1,18 @@
 import TrackPlayer from 'react-native-track-player';
 import { store } from '../store';
 import { getRandomNumber } from '../utils';
-import RenderToast from '../components/RenderToast';
+
+let flag = false;
 
 async function backgroundPlayback(track) {
+	if (flag) return;
+	flag = true;
+	setTimeout(() => (flag = false), 250);
 	await TrackPlayer.reset();
 	await TrackPlayer.add(track);
 	store.dispatch({ type: 'current_track', payload: track });
 	TrackPlayer.play();
 	store.dispatch({ type: 'set_playback', payload: true });
-	RenderToast(track.title);
 }
 
 module.exports = async function () {
@@ -66,9 +69,5 @@ module.exports = async function () {
 				);
 			}
 		}
-	});
-
-	TrackPlayer.addEventListener('remote-stop', () => {
-		TrackPlayer.destroy();
 	});
 };

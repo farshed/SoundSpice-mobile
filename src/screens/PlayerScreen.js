@@ -19,10 +19,10 @@ function PlayerScreen(props) {
 		let unsubscribe = navigation.addListener('focus', props.hideFooter);
 		return unsubscribe;
 	}, [navigation]);
-	// location={[0.5, 1]}
+
 	return (
 		<Background source={{ uri: currentTrack.artwork }} blurRadius={40}>
-			<Gradient colors={[`${theme.bgTrans}0.35)`, `${theme.bgTrans}0.75)`]}>
+			<Gradient colors={[`${theme.bgTrans}0.35)`, `${theme.bgTrans}0.8)`]}>
 				<Header>
 					<StyledIcon {...icons.collapse} onPress={navigation.goBack} />
 					<HeaderText>now playing</HeaderText>
