@@ -102,7 +102,7 @@ const TransIcon = styled(Icon)`
 `;
 
 const DisabledIcon = styled(Icon)`
-	color: rgba(255, 255, 255, 0.3);
+	color: rgba(255, 255, 255, 0.35);
 `;
 
 const IconWrapper = styled.View`

@@ -27,7 +27,7 @@ module.exports = async function () {
 		let { mediaFiles } = media;
 		backgroundPlayback(
 			shuffle
-				? media[getRandomNumber(0, media.length)]
+				? mediaFiles[getRandomNumber(0, mediaFiles.length)]
 				: currentTrack.index === mediaFiles.length - 1
 				? mediaFiles[0]
 				: mediaFiles[currentTrack.index + 1]
@@ -40,7 +40,7 @@ module.exports = async function () {
 		let { mediaFiles } = media;
 		backgroundPlayback(
 			shuffle
-				? media[getRandomNumber(0, media.length)]
+				? mediaFiles[getRandomNumber(0, mediaFiles.length)]
 				: currentTrack.index === 0
 				? mediaFiles[mediaFiles.length - 1]
 				: mediaFiles[currentTrack.index - 1]
@@ -57,7 +57,7 @@ module.exports = async function () {
 			} else {
 				backgroundPlayback(
 					shuffle
-						? media[getRandomNumber(0, media.length)]
+						? mediaFiles[getRandomNumber(0, mediaFiles.length)]
 						: currentTrack.index === mediaFiles.length - 1
 						? mediaFiles[0]
 						: mediaFiles[currentTrack.index + 1]
