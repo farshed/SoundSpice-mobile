@@ -1,9 +1,8 @@
 import React from 'react';
 import { TouchableNativeFeedback as Touchable, Dimensions } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { withTheme } from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-// import { CoverImage } from 'react-native-get-music-files-v3dev-test';
 import Icon from './Icon';
 import { contrastColor, foregroundColor, contrastTransColor } from '../themes/styles';
 const placeholder = require('../../assets/placeholder.jpg');
@@ -12,20 +11,19 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const RenderTrack = React.memo(
 	(props) => {
-		const { item, currentTrack, setCurrentTrack, currentTheme, setOptions } = props;
+		const { item, currentTrack, setCurrentTrack, setOptions, theme } = props;
 
 		function onTrackPress() {
 			if (item.id !== currentTrack.id) setCurrentTrack(item);
 		}
 
-		const rippleColor =
-			currentTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
 		const coverSrc = item.artwork ? { uri: item.artwork } : placeholder;
 		return (
-			<Touchable onPress={onTrackPress} background={Touchable.Ripple(rippleColor, false)}>
+			<Touchable
+				onPress={onTrackPress}
+				background={Touchable.Ripple(`${theme.contrastTrans}0.1)`, false)}>
 				<MainWrapper>
 					<Thumbnail source={coverSrc} />
-					{/* <CoverImage source={item.url} width={50} height={50} /> */}
 					<TextWrapper>
 						<Title numberOfLines={1} current={item.id === currentTrack.id}>
 							{item.title}
@@ -48,12 +46,11 @@ const RenderTrack = React.memo(
 
 function mapStateToProps(state) {
 	return {
-		currentTrack: state.playback.currentTrack,
-		currentTheme: state.settings.theme
+		currentTrack: state.playback.currentTrack
 	};
 }
 
-export default connect(mapStateToProps, actions)(RenderTrack);
+export default connect(mapStateToProps, actions)(withTheme(RenderTrack));
 
 const MainWrapper = styled.View`
 	flex-direction: row;

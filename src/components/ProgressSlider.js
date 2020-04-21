@@ -46,7 +46,7 @@ class ProgressSlider extends ProgressComponent {
 					value={this.getProgress()}
 					style={styles.sliderStyle}
 					minimumTrackTintColor={theme.contrast}
-					maximumTrackTintColor={`${theme.contrastTrans}0.35)`}
+					maximumTrackTintColor={`${theme.contrastTrans}0.3)`}
 					thumbTouchSize={styles.thumbSize}
 					trackStyle={styles.barStyle}
 					thumbStyle={styles.thumbStyle}
