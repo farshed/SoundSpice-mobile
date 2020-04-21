@@ -4880,6 +4880,11 @@ react-native-modal@^9.0.0:
     prop-types "^15.6.2"
     react-native-animatable "^1.2.4"
 
+react-native-quick-scroll@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-quick-scroll/-/react-native-quick-scroll-2.1.0.tgz#545d1f49bcf075f755e96f38fec0560e85f9f771"
+  integrity sha512-5G8e3b4Si/XWcmkq5IQnDSLfkigdoYhXHLjeZPbK0WQc+oRzzksPnBdqHiS2uBlugvh6Rup3TRPSH2lpKZ84Dw==
+
 react-native-reanimated@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.7.1.tgz#6363c7f3ebbabc56a05d5dccaf09d95f3b6a2d69"
