@@ -8,7 +8,7 @@ function AboutScreen() {
 	return (
 		<Wrapper>
 			<Heading>SoundSpice</Heading>
-			<DetailTrans>Version 3.0.4.20</DetailTrans>
+			<DetailTrans>Version 3.1.4.20</DetailTrans>
 			<Heading>Developed by</Heading>
 			<DetailTrans>Faisal Arshed</DetailTrans>
 			<Detail>Source code available under MIT License at</Detail>
