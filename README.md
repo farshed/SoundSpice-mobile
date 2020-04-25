@@ -2,6 +2,8 @@
 
 SoundSpice is a light-weight and minimalist music player for Android.
 
+[Play Store](https://play.google.com/store/apps/details?id=com.vynilla)
+
 ## Powered by
 
 -  React Native
