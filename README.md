@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/farshed/SoundSpice-mobile/master/logo.png?token=AFUJ4DLLHGZHULA6XLVXJMS6VXL6G)
+![Logo](https://raw.githubusercontent.com/farshed/SoundSpice-mobile/master/docs/logo.png?token=AFUJ4DLLHGZHULA6XLVXJMS6VXL6G)
 
 SoundSpice is a light-weight and minimalist music player for Android.
 
@@ -8,6 +8,10 @@ SoundSpice is a light-weight and minimalist music player for Android.
 -  Redux
 -  React Navigation v5
 -  Styled Components
+
+## Screenshots
+
+![Screenshot](https://raw.githubusercontent.com/farshed/SoundSpice-mobile/master/docs/screenshots.png?token=AFUJ4DLLHGZHULA6XLVXJMS6VXL6G)
 
 ## Todo
 
