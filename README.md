@@ -1,4 +1,5 @@
-![Logo](https://lh3.googleusercontent.com/kFPfvFRs0wCCGaMi_c--THDeeW6yx-WL8gpvryBTWX39vt8ER8odpM-9FUq_wn-7FK4=s360-rw)
+![Logo](https://raw.githubusercontent.com/farshed/SoundSpice-mobile/master/logo.png?token=AFUJ4DLLHGZHULA6XLVXJMS6VXL6G)
+
 SoundSpice is a light-weight and minimalist music player for Android.
 
 ## Powered by
