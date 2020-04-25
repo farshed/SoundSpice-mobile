@@ -14,7 +14,3 @@ SoundSpice is a light-weight and minimalist music player for Android.
 -  [ ] Built-in metadata editor
 -  [ ] Stream and download music from Youtube & SoundCloud
 -  [ ] Music syncing across devices
-
-## Support
-
-Best way to support is to suggest a feature or open a PR. Also, hit that ⭐️ button.
