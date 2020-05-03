@@ -40,7 +40,6 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
-gradle.properties
 
 # fastlane
 #
