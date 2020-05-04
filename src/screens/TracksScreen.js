@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Animated, TouchableOpacity, Dimensions, StatusBar } from 'react-native';
+import { View, Animated, Dimensions, StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
@@ -9,7 +9,6 @@ import setupPlayer from '../services/SetupPlayer';
 import RenderActivityIndicator from '../components/RenderActivityIndicator';
 import RenderTrack from '../components/RenderTrack';
 import OptionsModal from '../components/OptionsModal';
-import Icon from '../components/Icon';
 import { flatListItemLayout } from '../utils/FlatListLayout';
 import { scanMessage } from '../constants';
 import { contrastColor } from '../themes/styles';
@@ -37,10 +36,9 @@ function TracksScreen(props) {
 	}, []);
 
 	const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
-	const AnimatedIcon = Animated.createAnimatedComponent(StyledIcon);
 	const headerHeight = scrollY.interpolate({
-		inputRange: [0, 40],
-		outputRange: [40, 0],
+		inputRange: [0, 20],
+		outputRange: [20, 0],
 		extrapolate: 'clamp'
 	});
 
@@ -69,11 +67,7 @@ function TracksScreen(props) {
 						isVisible={modal.visible}
 						onPressCancel={() => setModal({ ...modal, visible: false })}
 					/>
-					<Animated.View style={[styles.header, { height: headerHeight }]}>
-						<TouchableOpacity onPress={() => props.navigation.navigate('settings')}>
-							<AnimatedIcon {...styles.settingsIcon} />
-						</TouchableOpacity>
-					</Animated.View>
+					<Animated.View style={[styles.header, { height: headerHeight }]} />
 				</View>
 			);
 		}
@@ -98,11 +92,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actions)(TracksScreen);
-
-const StyledIcon = styled(Icon)`
-	color: ${contrastColor};
-	margin-right: 15px;
-`;
 
 const MessageWrapper = styled.View`
 	flex: 1;
@@ -133,13 +122,8 @@ const styles = {
 		width: 4,
 		borderWidth: 0
 	},
-	settingsIcon: {
-		name: 'setting',
-		type: 'antdesign',
-		size: 24
-	},
 	flatlistContent: {
-		marginTop: 35,
-		paddingBottom: 35
+		marginTop: 20,
+		paddingBottom: 20
 	}
 };

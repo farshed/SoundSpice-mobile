@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableNativeFeedback as Touchable, Dimensions } from 'react-native';
-import styled, { withTheme } from 'styled-components/native';
+import { Dimensions } from 'react-native';
+import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Icon from './Icon';
@@ -11,7 +11,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const RenderTrack = React.memo(
 	(props) => {
-		const { item, currentTrack, setCurrentTrack, setOptions, theme } = props;
+		const { item, currentTrack, setCurrentTrack, setOptions } = props;
 
 		function onTrackPress() {
 			if (item.id !== currentTrack.id) setCurrentTrack(item);
@@ -19,19 +19,15 @@ const RenderTrack = React.memo(
 
 		const coverSrc = item.artwork ? { uri: item.artwork } : placeholder;
 		return (
-			<Touchable
-				onPress={onTrackPress}
-				background={Touchable.Ripple(`${theme.contrastTrans}0.1)`, false)}>
-				<MainWrapper>
-					<Thumbnail source={coverSrc} />
-					<TextWrapper>
-						<Title numberOfLines={1} current={item.id === currentTrack.id}>
-							{item.title}
-						</Title>
-						<Artist numberOfLines={1}>{item.artist}</Artist>
-					</TextWrapper>
-					<StyledIcon {...optionsIcon} onPress={() => setOptions({ visible: true, item })} />
-				</MainWrapper>
+			<Touchable onPress={onTrackPress} activeOpacity={0.4}>
+				<Thumbnail source={coverSrc} />
+				<TextWrapper>
+					<Title numberOfLines={1} current={item.id === currentTrack.id}>
+						{item.title}
+					</Title>
+					<Artist numberOfLines={1}>{item.artist}</Artist>
+				</TextWrapper>
+				<StyledIcon {...optionsIcon} onPress={() => setOptions({ visible: true, item })} />
 			</Touchable>
 		);
 	},
@@ -39,8 +35,7 @@ const RenderTrack = React.memo(
 		!(
 			nextProps.currentTrack.id === nextProps.item.id ||
 			prevProps.currentTrack.id === prevProps.item.id ||
-			prevProps.item !== nextProps.item ||
-			prevProps.currentTheme !== nextProps.currentTheme
+			prevProps.item !== nextProps.item
 		)
 );
 
@@ -50,9 +45,9 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withTheme(RenderTrack));
+export default connect(mapStateToProps, actions)(RenderTrack);
 
-const MainWrapper = styled.View`
+const Touchable = styled.TouchableOpacity`
 	flex-direction: row;
 	align-items: center;
 	height: 65px;

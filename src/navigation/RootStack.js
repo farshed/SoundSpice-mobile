@@ -5,7 +5,6 @@ import BottomTabNav from './BottomTabNav';
 import PlayerScreen from '../screens/PlayerScreen';
 import LyricsScreen from '../screens/LyricsScreen';
 import AddToPlaylist from '../screens/AddToPlayList';
-import SettingsScreen from '../screens/SettingsScreen';
 import AboutScreen from '../screens/AboutScreen';
 import ShowPlaylistScreen from '../screens/ShowPlaylistScreen';
 import ShowContentScreen from '../screens/ShowContentScreen';
@@ -41,7 +40,6 @@ function RootStack(props) {
 			<Stack.Screen name="bottom-tab" component={BottomTabNav} options={noHeader} />
 			<Stack.Screen name="player" component={PlayerScreen} options={noHeader} />
 			<Stack.Screen name="lyrics" component={LyricsScreen} options={noHeader} />
-			<Stack.Screen name="settings" component={SettingsScreen} options={{ title: 'Settings' }} />
 			<Stack.Screen
 				name="addToPlaylist"
 				component={AddToPlaylist}

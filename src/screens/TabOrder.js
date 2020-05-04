@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
 import DraggableFlatList from 'react-native-draggable-flatlist';
@@ -8,13 +8,18 @@ import ListItem from '../components/ListItem';
 import { contrastColor } from '../themes/styles';
 
 function TabOrder(props) {
+	useEffect(() => {
+		let unsubscribe = props.navigation.addListener('focus', props.hideFooter);
+		return unsubscribe;
+	}, [props.navigation]);
+
 	function renderItem({ item, drag }) {
 		return (
 			<ListItem
 				title={item.charAt(0).toUpperCase() + item.slice(1)}
 				iconProps={dragIcon}
 				onLongPress={drag}
-				delayLongPress={150}
+				delayLongPress={0}
 			/>
 		);
 	}

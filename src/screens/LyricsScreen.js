@@ -78,9 +78,9 @@ const Artist = styled.Text`
 
 const Lyrics = styled.Text`
 	font-family: 'CircularLight';
-	font-size: 16px;
+	font-size: 17px;
 	margin: 0 20px 50px 20px;
-	line-height: 22px;
+	line-height: 24px;
 	color: ${contrastColor};
 `;
 

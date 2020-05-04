@@ -34,7 +34,7 @@ const Wrapper = styled.View`
 	height: 48px;
 	width: ${SCREEN_WIDTH - 30}px;
 	border-radius: 25px;
-	background-color: ${contrastTransColor(0.15)};
+	background-color: ${contrastTransColor(0.18)};
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;

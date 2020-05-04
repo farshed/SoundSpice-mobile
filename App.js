@@ -10,7 +10,7 @@ export default function App() {
 	const [timePassed, setTimePassed] = useState(false);
 
 	useEffect(() => {
-		setTimeout(() => setTimePassed(true), 1000);
+		setTimeout(() => setTimePassed(true), 750);
 		store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
 		if (Text.defaultProps == null) Text.defaultProps = {};
 		Text.defaultProps.allowFontScaling = false;

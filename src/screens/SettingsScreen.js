@@ -15,7 +15,7 @@ function SettingsScreen(props) {
 	const [isDialogVisible, setDialogVisible] = useState(false);
 
 	useEffect(() => {
-		let unsubscribe = props.navigation.addListener('focus', props.hideFooter);
+		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
 		return unsubscribe;
 	}, [props.navigation]);
 
@@ -50,7 +50,7 @@ function SettingsScreen(props) {
 	const darkModeThumbColor = current === 'light' ? elevatedBG : foreground;
 	const skippedFolders = props.foldersToSkip.join(', ');
 	return (
-		<ScrollView style={{ flex: 1 }}>
+		<ScrollView style={{ flex: 1, marginTop: 20 }}>
 			<ListItem
 				iconProps={icons.darkMode}
 				title={settings.darkMode.title}

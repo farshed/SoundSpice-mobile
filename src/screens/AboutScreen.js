@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TouchableOpacity, Linking } from 'react-native';
 import styled from 'styled-components/native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import { repoUrl } from '../constants/urls';
 import { contrastColor, contrastTransColor, foregroundColor } from '../themes/styles';
 
-function AboutScreen() {
+function AboutScreen(props) {
+	useEffect(() => {
+		let unsubscribe = props.navigation.addListener('focus', props.hideFooter);
+		return unsubscribe;
+	}, [props.navigation]);
+
 	return (
 		<Wrapper>
 			<Heading>SoundSpice</Heading>
@@ -19,7 +26,7 @@ function AboutScreen() {
 	);
 }
 
-export default AboutScreen;
+export default connect(null, actions)(AboutScreen);
 
 const Wrapper = styled.View`
 	flex: 1;

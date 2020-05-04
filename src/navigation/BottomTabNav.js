@@ -4,6 +4,7 @@ import { withTheme } from 'styled-components/native';
 import SearchScreen from '../screens/SearchScreen';
 import TracksScreen from '../screens/TracksScreen';
 import TopMaterialTabNav from './TopMaterialTabNav';
+import SettingsScreen from '../screens/SettingsScreen';
 import Icon from '../components/Icon';
 
 function BottomTabNav(props) {
@@ -30,6 +31,10 @@ function BottomTabNav(props) {
 					return <Icon name="search" type="feather" size={focused ? 26 : 23} color={color} />;
 				case 'Library':
 					return <Icon name="archive" type="feather" size={focused ? 26 : 23} color={color} />;
+				case 'Settings':
+					return (
+						<Icon name="settings" type="feather" size={focused ? 26 : 23} color={color} />
+					);
 			}
 		};
 	}
@@ -56,6 +61,11 @@ function BottomTabNav(props) {
 				name="Library"
 				component={TopMaterialTabNav}
 				options={{ tabBarIcon: iconProvider('Library') }}
+			/>
+			<BottomTabs.Screen
+				name="Settings"
+				component={SettingsScreen}
+				options={{ tabBarIcon: iconProvider('Settings') }}
 			/>
 		</BottomTabs.Navigator>
 	);

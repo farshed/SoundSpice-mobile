@@ -12,7 +12,6 @@ import { elevatedBGColor, contrastColor } from '../themes/styles';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const borderRadius = SCREEN_WIDTH / 12;
 
 function PlaylistOptions(props) {
 	const [isDialogVisible, setDialogVisible] = useState(false);
@@ -108,8 +107,8 @@ const ModalContentWrapper = styled.View`
 	elevation: 5;
 	justify-content: space-evenly;
 	margin-bottom: -20px;
-	border-top-left-radius: ${borderRadius}px;
-	border-top-right-radius: ${borderRadius}px;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
 `;
 
 const TextWrapper = styled.View`
