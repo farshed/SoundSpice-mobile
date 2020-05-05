@@ -3,8 +3,8 @@ export const light = {
 	foreground2: '#2B05EE',
 	background: 'white',
 	elevatedBG: '#F7F8FB',
-	contrast: 'black',
-	contrastTrans: 'rgba(0, 0, 0, ',
+	contrast: '#121212',
+	contrastTrans: 'rgba(18, 18, 18, ',
 	fgTrans: 'rgba(63, 81, 181, ',
 	bgTrans: 'rgba(255, 255, 255, ',
 	current: 'light'

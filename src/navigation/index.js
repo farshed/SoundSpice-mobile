@@ -11,7 +11,7 @@ import * as themes from '../themes';
 
 function RootNavigator(props) {
 	const { theme } = props;
-	const color = theme === 'dark' ? 'black' : 'white';
+	const color = themes[theme].background;
 	const statusBarContent = `${theme === 'light' ? 'dark' : 'light'}-content`;
 	const wrapperColor = {
 		colors: {

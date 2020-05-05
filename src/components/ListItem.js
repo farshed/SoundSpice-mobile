@@ -8,7 +8,7 @@ const ScreenWidth = Dimensions.get('window').width;
 
 function ListItem(props) {
 	const rippleColor =
-		props.theme.current === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+		props.theme.current === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(18, 18, 18, 0.1)';
 	return (
 		<Touchable
 			onPress={props.onPress}
