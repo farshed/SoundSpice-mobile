@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import MainStack from './MainStack';
 import PlayerScreen from '../screens/PlayerScreen';
+import AddToPlaylist from '../screens/AddToPlayList';
 import LyricsScreen from '../screens/LyricsScreen';
 
 const screenOptions = {
@@ -20,6 +21,11 @@ function RootStack() {
 			screenOptions={screenOptions}>
 			<Modal.Screen name="main" component={MainStack} />
 			<Modal.Screen name="player" component={PlayerScreen} />
+			<Modal.Screen
+				name="addToPlaylist"
+				component={AddToPlaylist}
+				options={{ title: 'Add to playlist' }}
+			/>
 			<Modal.Screen name="lyrics" component={LyricsScreen} />
 		</Modal.Navigator>
 	);

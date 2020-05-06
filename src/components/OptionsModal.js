@@ -68,10 +68,15 @@ function OptionsModal(props) {
 	return (
 		<StyledModal
 			isVisible={isVisible}
-			onBackButtonPress={onPressCancel}
 			deviceHeight={SCREEN_HEIGHT}
+			swipeDirection="down"
+			onBackButtonPress={onPressCancel}
 			onBackdropPress={onPressCancel}
-			backdropColor="black">
+			onSwipeComplete={onPressCancel}
+			backdropColor="black"
+			animationOutTiming={200}
+			animationInTiming={200}
+			hideModalContentWhileAnimating>
 			<ModalContentWrapper>
 				<TextWrapper>
 					<ModalTitle numberOfLines={1}>{modalTitle}</ModalTitle>
@@ -116,10 +121,6 @@ export default connect(null, actions)(OptionsModal);
 const StyledModal = styled(Modal)`
 	justify-content: flex-end;
 	align-items: center;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
 `;
 
 const ModalContentWrapper = styled.View`

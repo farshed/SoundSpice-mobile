@@ -62,12 +62,12 @@ function TracksScreen(props) {
 						rightOffset={10}
 						thumbStyle={styles.thumbStyle}
 					/>
+					<Animated.View style={[styles.header, { height: headerHeight }]} />
 					<OptionsModal
 						selectedTrack={modal.item}
 						isVisible={modal.visible}
 						onPressCancel={() => setModal({ ...modal, visible: false })}
 					/>
-					<Animated.View style={[styles.header, { height: headerHeight }]} />
 				</View>
 			);
 		}

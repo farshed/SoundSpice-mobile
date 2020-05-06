@@ -42,10 +42,15 @@ function PlaylistOptions(props) {
 	return (
 		<StyledModal
 			isVisible={isVisible}
-			onBackButtonPress={onPressCancel}
+			swipeDirection="down"
 			deviceHeight={SCREEN_HEIGHT}
+			onBackButtonPress={onPressCancel}
 			onBackdropPress={onPressCancel}
-			backdropColor="black">
+			onSwipeComplete={onPressCancel}
+			backdropColor="black"
+			animationOutTiming={100}
+			animationInTiming={100}
+			hideModalContentWhileAnimating>
 			<ModalContentWrapper>
 				<TextWrapper>
 					<ModalTitle numberOfLines={1}>{selectedPlaylist}</ModalTitle>
@@ -94,10 +99,6 @@ export default connect(mapStateToProps, actions)(PlaylistOptions);
 const StyledModal = styled(Modal)`
 	justify-content: flex-end;
 	align-items: center;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
 `;
 
 const ModalContentWrapper = styled.View`
