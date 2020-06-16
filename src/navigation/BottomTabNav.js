@@ -1,11 +1,12 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { withTheme } from 'styled-components/native';
 import SearchScreen from '../screens/SearchScreen';
 import TracksScreen from '../screens/TracksScreen';
 import TopMaterialTabNav from './TopMaterialTabNav';
 import SettingsScreen from '../screens/SettingsScreen';
 import Icon from '../components/Icon';
+import PlayerFooter from '../components/PlayerFooter'
 
 function BottomTabNav(props) {
 	const BottomTabs = createBottomTabNavigator();
@@ -43,6 +44,12 @@ function BottomTabNav(props) {
 		<BottomTabs.Navigator
 			initialRouteName="Tracks"
 			backBehavior="initialRoute"
+			tabBar={props => (
+				<React.Fragment>
+					<PlayerFooter />
+					<BottomTabBar {...props} />
+				</React.Fragment>
+			)}
 			tabBarOptions={tabBarOptions}
 			lazy={false}>
 			<BottomTabs.Screen

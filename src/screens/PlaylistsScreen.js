@@ -42,10 +42,9 @@ function PlaylistsScreen(props) {
 	}
 
 	const { playlists } = props;
-	let bottomMargin = props.currentTrack.id !== '000' ? { marginBottom: 160 } : { flex: 1 };
 	let keys = Object.keys(playlists);
 	return (
-		<View style={bottomMargin}>
+		<View style={{flex: 1}}>
 			<CreatePlaylistButton onPress={() => setModal(true)} />
 			<InputDialog
 				isVisible={isModalVisible}

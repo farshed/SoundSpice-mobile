@@ -47,9 +47,8 @@ function ArtistsScreen(props) {
 		return sortedData;
 	}
 
-	let bottomMargin = props.currentTrack.id !== '000' ? { marginBottom: 60 } : { flex: 1 };
 	return (
-		<View style={bottomMargin}>
+		<View style={{flex: 1}}>
 			<FlatList
 				data={mediaListParser()}
 				renderItem={renderArtists}

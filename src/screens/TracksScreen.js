@@ -35,7 +35,6 @@ function TracksScreen(props) {
 		setupPlayer().then(() => currentTrack.id !== '000' && TrackPlayer.add(currentTrack));
 	}, []);
 
-	const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
 	const headerHeight = scrollY.interpolate({
 		inputRange: [0, 20],
 		outputRange: [20, 0],
@@ -45,7 +44,7 @@ function TracksScreen(props) {
 	if (mediaLoaded) {
 		if (media.length > 0) {
 			return (
-				<View style={renderMargin}>
+				<View style={{flex: 1}}>
 					<QuickScrollList
 						keyExtractor={(asset) => asset.id.toString()}
 						data={media}

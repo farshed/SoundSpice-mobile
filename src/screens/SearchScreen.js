@@ -34,13 +34,12 @@ function SearchScreen(props) {
 	}
 
 	function renderSearch() {
-		const renderMargin = props.currentTrack.id !== '000' ? { marginBottom: 60 } : { flex: 1 };
 		return isInputFocused || searchInput ? (
 			<FlatList
 				data={listFilter()}
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				keyExtractor={(asset) => asset.id.toString()}
-				style={[styles.resultsWrapper, renderMargin]}
+				style={styles.resultsWrapper}
 			/>
 		) : (
 			<PlaceholderWrapper>

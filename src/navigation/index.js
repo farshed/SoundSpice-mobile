@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { navigationRef } from './NavigationService';
 import RootStack from './RootStack';
-import PlayerFooter from '../components/PlayerFooter';
 import * as themes from '../themes';
 
 function RootNavigator(props) {
@@ -23,7 +22,6 @@ function RootNavigator(props) {
 			<ThemeProvider theme={themes[theme]}>
 				<StatusBar barStyle={statusBarContent} backgroundColor={color} animated />
 				<RootStack />
-				<PlayerFooter />
 			</ThemeProvider>
 		</NavigationContainer>
 	);
