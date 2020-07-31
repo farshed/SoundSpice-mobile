@@ -25,6 +25,8 @@ function FoldersScreen(props) {
 				key={(key + index).toString()}
 				onPress={() => onListItemPress(key, data[key])}
 				iconProps={folderIcon}
+				titleStyle={styles.title}
+				subtitleStyle={styles.subtitle}
 			/>
 		));
 	}
@@ -42,7 +44,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(FoldersScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(FoldersScreen);
 
 const folderIcon = {
 	name: 'folder',
@@ -50,5 +55,16 @@ const folderIcon = {
 	size: 24,
 	style: {
 		backgroundColor: 'transparent'
+	}
+};
+
+const styles = {
+	title: {
+		fontFamily: 'CircularBold',
+		fontSize: 15
+	},
+	subtitle: {
+		fontFamily: 'CircularLight',
+		fontSize: 14
 	}
 };

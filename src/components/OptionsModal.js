@@ -73,7 +73,7 @@ function OptionsModal(props) {
 			onBackButtonPress={onPressCancel}
 			onBackdropPress={onPressCancel}
 			onSwipeComplete={onPressCancel}
-			backdropColor="black"
+			backdropColor="rgba(0, 0, 0, 0.5)"
 			animationOutTiming={200}
 			animationInTiming={200}
 			hideModalContentWhileAnimating>
@@ -116,7 +116,10 @@ function OptionsModal(props) {
 	);
 }
 
-export default connect(null, actions)(OptionsModal);
+export default connect(
+	null,
+	actions
+)(OptionsModal);
 
 const StyledModal = styled(Modal)`
 	justify-content: flex-end;
@@ -130,8 +133,8 @@ const ModalContentWrapper = styled.View`
 	elevation: 5;
 	justify-content: space-evenly;
 	margin-bottom: -20px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 `;
 
 const TextWrapper = styled.View`

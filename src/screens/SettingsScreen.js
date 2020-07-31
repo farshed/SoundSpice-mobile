@@ -50,7 +50,7 @@ function SettingsScreen(props) {
 	const darkModeThumbColor = current === 'light' ? elevatedBG : foreground;
 	const skippedFolders = props.foldersToSkip.join(', ');
 	return (
-		<ScrollView style={{ flex: 1, marginTop: 20 }}>
+		<ScrollView style={styles.scroll}>
 			<ListItem
 				iconProps={icons.darkMode}
 				title={settings.darkMode.title}
@@ -132,7 +132,18 @@ function mapStateToProps({ settings }) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withTheme(SettingsScreen));
+export default connect(
+	mapStateToProps,
+	actions
+)(withTheme(SettingsScreen));
+
+const styles = {
+	scroll: {
+		flex: 1,
+		marginTop: 20,
+		marginBottom: 60
+	}
+};
 
 const icons = {
 	darkMode: {

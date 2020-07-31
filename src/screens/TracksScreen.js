@@ -36,11 +36,6 @@ function TracksScreen(props) {
 	}, []);
 
 	const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
-	// const headerHeight = scrollY.interpolate({
-	// 	inputRange: [0, 20],
-	// 	outputRange: [20, 0],
-	// 	extrapolate: 'clamp'
-	// });
 
 	if (mediaLoaded) {
 		if (media.length > 0) {
@@ -51,9 +46,6 @@ function TracksScreen(props) {
 						data={media}
 						renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 						getItemLayout={flatListItemLayout}
-						// onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
-						// useNativeDriver: false
-						// })}
 						scrollEventThrottle={16}
 						contentContainerStyle={styles.flatlistContent}
 						initialScrollIndex={currentTrack.index || undefined}
@@ -62,7 +54,6 @@ function TracksScreen(props) {
 						rightOffset={10}
 						thumbStyle={styles.thumbStyle}
 					/>
-					{/* <Animated.View style={[styles.header, { height: headerHeight }]} /> */}
 					<OptionsModal
 						selectedTrack={modal.item}
 						isVisible={modal.visible}
@@ -91,7 +82,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(TracksScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(TracksScreen);
 
 const MessageWrapper = styled.View`
 	flex: 1;
@@ -108,23 +102,13 @@ const Message = styled.Text`
 `;
 
 const styles = {
-	header: {
-		backgroundColor: 'transparent',
-		position: 'absolute',
-		top: 0,
-		left: 0,
-		right: 0,
-		overflow: 'hidden',
-		justifyContent: 'center',
-		alignItems: 'flex-end'
-	},
 	thumbStyle: {
 		width: 4,
 		borderWidth: 0
 	},
 	flatlistContent: {
 		// marginTop: 20,
-		paddingBottom: 20,
-		paddingTop: 20
+		paddingBottom: 20
+		// paddingTop: 20
 	}
 };

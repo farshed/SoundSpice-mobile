@@ -18,7 +18,7 @@ function AboutScreen(props) {
 			<DetailTrans>Version 3.2.0</DetailTrans>
 			<Heading>Developed by</Heading>
 			<DetailTrans>Faisal Arshed</DetailTrans>
-			<Detail>Source code available under GPLv3 at</Detail>
+			<Detail>Source code available under GNU GPL at</Detail>
 			<TouchableOpacity onPress={() => Linking.openURL(repoUrl)}>
 				<Link>Github</Link>
 			</TouchableOpacity>
@@ -26,7 +26,10 @@ function AboutScreen(props) {
 	);
 }
 
-export default connect(null, actions)(AboutScreen);
+export default connect(
+	null,
+	actions
+)(AboutScreen);
 
 const Wrapper = styled.View`
 	flex: 1;

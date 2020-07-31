@@ -68,6 +68,8 @@ function PlaylistsScreen(props) {
 						key={String(key + index)}
 						onPress={() => onListItemPress(key, playlists[key])}
 						iconProps={playlistIcon}
+						titleStyle={styles.title}
+						subtitleStyle={styles.subtitle}
 						rightElement={<StyledIcon {...optionsIcon} onPress={() => onOptionsPress(key)} />}
 					/>
 				))}
@@ -83,7 +85,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(PlaylistsScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(PlaylistsScreen);
 
 const StyledIcon = styled(Icon)`
 	color: ${contrastTransColor(0.75)};
@@ -99,4 +104,15 @@ const optionsIcon = {
 	name: 'more-vertical',
 	type: 'feather',
 	size: 25
+};
+
+const styles = {
+	title: {
+		fontFamily: 'CircularBold',
+		fontSize: 15
+	},
+	subtitle: {
+		fontFamily: 'CircularLight',
+		fontSize: 14
+	}
 };

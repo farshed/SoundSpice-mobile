@@ -36,7 +36,7 @@ function AddToPlayList(props) {
 		);
 	}
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
+		<ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 10 }}>
 			{keys.map((key, index) => (
 				<ListItem
 					title={key}
@@ -44,6 +44,8 @@ function AddToPlayList(props) {
 					onPress={() => onPlaylistPress(key)}
 					iconProps={playlistIcon}
 					key={(key + index).toString()}
+					titleStyle={styles.title}
+					subtitleStyle={styles.subtitle}
 				/>
 			))}
 		</ScrollView>
@@ -56,7 +58,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(AddToPlayList);
+export default connect(
+	mapStateToProps,
+	actions
+)(AddToPlayList);
 
 const EmptyWrapper = styled.View`
 	flex: 1;
@@ -75,4 +80,15 @@ const playlistIcon = {
 	name: 'playlist-music-outline',
 	type: 'material-community',
 	size: 28
+};
+
+const styles = {
+	title: {
+		fontFamily: 'CircularBold',
+		fontSize: 15
+	},
+	subtitle: {
+		fontFamily: 'CircularLight',
+		fontSize: 14
+	}
 };

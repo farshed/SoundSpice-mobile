@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableNativeFeedback as Touchable, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import styled, { withTheme } from 'styled-components/native';
 import Icon from './Icon';
 import { contrastColor, contrastTransColor } from '../themes/styles';
@@ -7,31 +7,26 @@ import { contrastColor, contrastTransColor } from '../themes/styles';
 const ScreenWidth = Dimensions.get('window').width;
 
 function ListItem(props) {
-	const rippleColor =
-		props.theme.current === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(18, 18, 18, 0.1)';
 	return (
-		<Touchable
+		<Wrapper
 			onPress={props.onPress}
 			onLongPress={props.onLongPress}
-			delayLongPress={props.delayLongPress}
-			background={Touchable.Ripple(rippleColor, false)}>
-			<Wrapper>
-				<StyledIcon {...props.iconProps} />
-				<TextWrapper>
-					<Title style={props.titleStyle} numberOfLines={1}>
-						{props.title}
-					</Title>
-					{props.subtitle && <SubTitle>{props.subtitle}</SubTitle>}
-				</TextWrapper>
-				<RightWrapper>{props.rightElement && props.rightElement}</RightWrapper>
-			</Wrapper>
-		</Touchable>
+			delayLongPress={props.delayLongPress}>
+			<StyledIcon {...props.iconProps} />
+			<TextWrapper>
+				<Title style={props.titleStyle} numberOfLines={1}>
+					{props.title}
+				</Title>
+				{props.subtitle && <SubTitle style={props.subtitleStyle}>{props.subtitle}</SubTitle>}
+			</TextWrapper>
+			<RightWrapper>{props.rightElement && props.rightElement}</RightWrapper>
+		</Wrapper>
 	);
 }
 
 export default withTheme(ListItem);
 
-const Wrapper = styled.View`
+const Wrapper = styled.TouchableOpacity`
 	flex-direction: row;
 	align-items: center;
 	height: 60px;
@@ -55,15 +50,15 @@ const TextWrapper = styled.View`
 `;
 
 const Title = styled.Text`
-	font-size: 16px;
 	font-family: 'ProductSans';
+	font-size: 16px;
 	color: ${contrastColor};
 	width: ${ScreenWidth / 2}px;
 `;
 
 const SubTitle = styled.Text`
-	font-size: 14px;
 	font-family: 'ProductSansLight';
+	font-size: 14px;
 	color: ${contrastTransColor(0.75)};
 `;
 
