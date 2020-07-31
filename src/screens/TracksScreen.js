@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Animated, Dimensions, StatusBar } from 'react-native';
+import { View, Dimensions, StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
@@ -21,7 +21,6 @@ const ViewportHeight = ScreenHeight - (StatusBarHeight + FooterHeight + BottomTa
 const itemHeight = 75;
 
 function TracksScreen(props) {
-	// const [scrollY] = useState(new Animated.Value(0));
 	const [modal, setModal] = useState({ visible: false, item: {} });
 	const { currentTrack, mediaLoaded, media } = props;
 

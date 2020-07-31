@@ -43,15 +43,16 @@ export default function cleanupMedia(media) {
 	);
 	for (let i = 0; i < mediaFiles.length; i++) {
 		// if (mediaFiles[i].title) {
-		if (mediaFiles[i].fileName.includes('.flac')) continue;
+		if (mediaFiles[i].fileName.includes('.flac') || mediaFiles[i].fileName.includes('#')) {
+			continue;
+		}
 		folderName = getFolder(mediaFiles[i].path);
 		newMedia.push({
 			id: mediaFiles[i].duration + i,
 			duration: mediaFiles[i].duration,
 			url: mediaFiles[i].path,
-			title: (
-				mediaFiles[i].title || mediaFiles[i].fileName.replace(/.mp3|.aac|.wav|.amr|.flac/, '')
-			).replace('#', ''),
+			title:
+				mediaFiles[i].title || mediaFiles[i].fileName.replace(/.mp3|.aac|.wav|.amr|.flac/, ''),
 			artwork: mediaFiles[i].cover || null,
 			artist: mediaFiles[i].author === '<unknown>' ? 'unknown' : mediaFiles[i].author,
 			album: mediaFiles[i].album === '<unknown>' ? 'unknown' : mediaFiles[i].album,
