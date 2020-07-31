@@ -1,12 +1,20 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, persistReducer, createMigrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import reducers from '../reducers';
+
+const migrations = {
+	0: (state) => {
+		return { ...state };
+	}
+};
 
 const persistConfig = {
 	key: 'root',
 	storage: AsyncStorage,
+	version: 0,
+	migrate: createMigrate(migrations, { debug: false }),
 	blacklist: ['footer', 'player', 'search']
 };
 
