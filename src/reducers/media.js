@@ -1,9 +1,9 @@
-const INITIAL_STATE = { mediaFiles: [], mediaLoaded: false };
+const INITIAL_STATE = { mediaFiles: [], artists: [], albums: [], mediaLoaded: false };
 
-export default function (state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'get_media_success':
-			return { mediaLoaded: true, mediaFiles: action.payload };
+			return { mediaLoaded: true, ...action.payload };
 		case 'rename_track': {
 			let mediaArr = [...state.mediaFiles];
 			let index = mediaArr.findIndex((i) => i.id === action.payload.id);

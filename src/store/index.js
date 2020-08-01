@@ -6,7 +6,10 @@ import reducers from '../reducers';
 
 const migrations = {
 	0: (state) => {
-		return { ...state };
+		return {
+			...state,
+			media: { ...state.media, artists: [], albums: [] }
+		};
 	}
 };
 

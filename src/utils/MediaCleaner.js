@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import { store } from '../store';
 // import { PITCH_ALGORITHM_MUSIC } from 'react-native-track-player';
 
@@ -61,10 +62,38 @@ export default function cleanupMedia(media) {
 			// pitchAlgorithm: PITCH_ALGORITHM_MUSIC
 		});
 	}
-	return newMedia;
+	return { mediaFiles: newMedia, artists: getArtists(newMedia), album: getAlbums(newMedia) };
 }
 
 function getFolder(path) {
 	let dirArr = path.split('/');
 	return dirArr[dirArr.length - 2];
+}
+
+function getArtists(media) {
+	let sectionsData = [];
+	let data = _.groupBy(media, 'artist');
+	let titles = Object.keys(data);
+	titles.forEach((title) => {
+		sectionsData.push({
+			title,
+			data: data[title]
+		});
+	});
+	let sortedData = _.sortBy(sectionsData, 'title').filter((item) => item.title !== 'null');
+	return sortedData;
+}
+
+function getAlbums(media) {
+	let sectionsData = [];
+	let data = _.groupBy(media, 'album');
+	let titles = Object.keys(data);
+	titles.forEach((title) => {
+		sectionsData.push({
+			title,
+			data: data[title]
+		});
+	});
+	let sortedData = _.sortBy(sectionsData, 'title').filter((item) => item.title !== 'null');
+	return sortedData;
 }

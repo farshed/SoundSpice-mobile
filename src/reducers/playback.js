@@ -6,11 +6,14 @@ const INITIAL_STATE = {
 		duration: 0,
 		artwork: 'cover'
 	},
+	// currentTrack: null,
+	// playingFrom: ['home'],
+	// queue: [],
 	loop: false,
 	shuffle: false
 };
 
-export default function (state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'current_track':
 			return { ...state, currentTrack: action.payload };
@@ -22,3 +25,9 @@ export default function (state = INITIAL_STATE, action) {
 			return state;
 	}
 }
+
+// home
+// playlist
+// artist
+// album
+// folder

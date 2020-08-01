@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import _ from 'underscore';
 import RenderCategory from '../components/RenderCategory';
-import { flatListCardLayout } from '../utils/FlatListLayout';
+import { flatListItemLayout } from '../utils/FlatListLayout';
 
 function AlbumsScreen(props) {
 	useEffect(() => {
@@ -31,30 +30,13 @@ function AlbumsScreen(props) {
 		);
 	}
 
-	function mediaListParser() {
-		let sectionsData = [];
-		let data = _.groupBy(props.media, 'album');
-		let titles = Object.keys(data);
-		titles.forEach((title) => {
-			sectionsData.push({
-				title,
-				data: data[title]
-			});
-		});
-		let unknownAlbum = sectionsData.filter((item) => item.title === 'null');
-		unknownAlbum = unknownAlbum.map((item) => (item.title = 'unknown'));
-		let sortedData = _.sortBy(sectionsData, 'title').filter((item) => item.title !== 'null');
-		return sortedData;
-	}
-
 	let bottomMargin = props.currentTrack.id !== '000' ? { marginBottom: 60 } : { flex: 1 };
 	return (
 		<View style={bottomMargin}>
 			<FlatList
-				data={mediaListParser()}
+				data={props.albums}
 				renderItem={renderAlbums}
-				numColumns={2}
-				getItemLayout={flatListCardLayout}
+				getItemLayout={flatListItemLayout}
 				keyExtractor={(asset) => asset.title.toString()}
 			/>
 		</View>
@@ -63,12 +45,15 @@ function AlbumsScreen(props) {
 
 function mapStateToProps(state) {
 	return {
-		media: state.media.mediaFiles,
+		albums: state.media.albums,
 		currentTrack: state.playback.currentTrack
 	};
 }
 
-export default connect(mapStateToProps, actions)(AlbumsScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(AlbumsScreen);
 
 const styles = {
 	itemInvisible: {
