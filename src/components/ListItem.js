@@ -11,7 +11,8 @@ function ListItem(props) {
 		<Wrapper
 			onPress={props.onPress}
 			onLongPress={props.onLongPress}
-			delayLongPress={props.delayLongPress}>
+			delayLongPress={props.delayLongPress}
+			activeOpacity={0.4}>
 			<StyledIcon {...props.iconProps} />
 			<TextWrapper>
 				<Title style={props.titleStyle} numberOfLines={1}>

@@ -11,7 +11,7 @@ export default function App() {
 
 	useEffect(() => {
 		setTimeout(() => setTimePassed(true), 500);
-		// store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
+		store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
 		if (Text.defaultProps == null) Text.defaultProps = {};
 		Text.defaultProps.allowFontScaling = false;
 		console.disableYellowBox = true;

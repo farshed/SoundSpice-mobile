@@ -1,10 +1,10 @@
 const INITIAL_STATE = {
 	foldersToSkip: ['whatsapp audio'],
 	theme: 'light',
-	topTabs: ['playlists', 'artists', 'albums', 'folders']
+	topTabs: ['playlists', 'folders', 'artists', 'albums']
 };
 
-export default function (state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case 'add_folders_to_skip':
 			return { ...state, foldersToSkip: action.payload };
