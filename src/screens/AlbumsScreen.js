@@ -32,7 +32,7 @@ function AlbumsScreen(props) {
 		);
 	}
 
-	if (props.artists.length === 0) {
+	if (props.albums.length === 0) {
 		return (
 			<EmptyWrapper>
 				<Text>Oops! Nothing to show here</Text>
