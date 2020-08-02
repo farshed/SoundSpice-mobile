@@ -29,9 +29,5 @@ export const settings = {
 		title: 'Confirm Cache Purge',
 		subtitle: 'Are you sure you want to clear covers cache?'
 	},
-	changeOrder: {
-		title: 'Rearrange library tabs',
-		subtitle: 'Change the order of tabs in the library'
-	},
 	share: 'Share SoundSpice'
 };
