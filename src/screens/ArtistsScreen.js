@@ -18,7 +18,6 @@ function ArtistsScreen(props) {
 	}
 
 	function renderArtists({ item, index }) {
-		if (item.empty) return <View style={styles.itemInvisible} />;
 		let songsWithCover = item.data.filter((song) => song.artwork !== 'cover');
 		let cover = songsWithCover.length === 0 ? 'cover' : songsWithCover[0].artwork;
 		return (
@@ -65,12 +64,6 @@ export default connect(
 	mapStateToProps,
 	actions
 )(ArtistsScreen);
-
-const styles = {
-	itemInvisible: {
-		backgroundColor: 'transparent'
-	}
-};
 
 const EmptyWrapper = styled.View`
 	flex: 1;

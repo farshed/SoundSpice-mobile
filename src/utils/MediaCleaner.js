@@ -62,7 +62,7 @@ export default function cleanupMedia(media) {
 			// pitchAlgorithm: PITCH_ALGORITHM_MUSIC
 		});
 	}
-	return { mediaFiles: newMedia, artists: getArtists(newMedia), album: getAlbums(newMedia) };
+	return { mediaFiles: newMedia, artists: getArtists(newMedia), albums: getAlbums(newMedia) };
 }
 
 function getFolder(path) {
