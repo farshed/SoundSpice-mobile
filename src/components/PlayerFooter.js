@@ -54,14 +54,17 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withTheme(PlayerFooter));
+export default connect(
+	mapStateToProps,
+	actions
+)(withTheme(PlayerFooter));
 
 const MainWrapper = styled.View`
 	height: 60px;
 	position: absolute;
 	left: 0px;
 	right: 0px;
-	bottom: 50px;
+	bottom: 49px;
 	flex-direction: row;
 	align-items: center;
 	padding-left: 15px;

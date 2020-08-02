@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { View, FlatList } from 'react-native';
+import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import RenderCategory from '../components/RenderCategory';
 import { flatListItemLayout } from '../utils/FlatListLayout';
+import { contrastColor } from '../themes/styles';
 
 function AlbumsScreen(props) {
 	useEffect(() => {
@@ -30,7 +32,16 @@ function AlbumsScreen(props) {
 		);
 	}
 
+	if (props.artists.length === 0) {
+		return (
+			<EmptyWrapper>
+				<Text>Oops! Nothing to show here</Text>
+			</EmptyWrapper>
+		);
+	}
+
 	let bottomMargin = props.currentTrack.id !== '000' ? { marginBottom: 60 } : { flex: 1 };
+
 	return (
 		<View style={bottomMargin}>
 			<FlatList
@@ -60,3 +71,16 @@ const styles = {
 		backgroundColor: 'transparent'
 	}
 };
+
+const EmptyWrapper = styled.View`
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 60px;
+`;
+
+const Text = styled.Text`
+	font-family: 'Circular';
+	font-size: 16px;
+	color: ${contrastColor};
+`;

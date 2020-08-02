@@ -31,8 +31,10 @@ function FoldersScreen(props) {
 		));
 	}
 
+	let bottomMargin = props.currentTrack.id !== '000' ? { flex: 1, marginBottom: 60 } : { flex: 1 };
+
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={bottomMargin}>
 			<ScrollView showsVerticalScrollIndicator={false}>{renderFolders()}</ScrollView>
 		</View>
 	);
@@ -40,7 +42,8 @@ function FoldersScreen(props) {
 
 function mapStateToProps(state) {
 	return {
-		media: state.media.mediaFiles
+		media: state.media.mediaFiles,
+		currentTrack: state.playback.currentTrack
 	};
 }
 

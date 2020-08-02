@@ -14,10 +14,10 @@ function ShowFolderScreen(props) {
 		return unsubscribe;
 	}, [props.navigation]);
 
-	// const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
+	let bottomMargin = props.currentTrack.id !== '000' ? { flex: 1, marginBottom: 60 } : { flex: 1 };
 
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={bottomMargin}>
 			<FlatList
 				keyExtractor={(asset) => asset.id.toString()}
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
@@ -33,7 +33,11 @@ function ShowFolderScreen(props) {
 	);
 }
 
+function mapStateToProps(state) {
+	return { currentTrack: state.playback.currentTrack };
+}
+
 export default connect(
-	null,
+	mapStateToProps,
 	actions
 )(ShowFolderScreen);

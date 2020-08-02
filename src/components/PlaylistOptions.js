@@ -21,7 +21,11 @@ function PlaylistOptions(props) {
 
 	function onPressRename(newName) {
 		let playlistName = newName.trim();
-		if (playlistName === selectedPlaylist) return setRenameModal(false);
+		if (playlistName === selectedPlaylist) {
+			setRenameModal(false);
+			props.onPressCancel();
+			return;
+		}
 		if (playlistName) {
 			let keys = Object.keys(props.playlists);
 			let index = keys.indexOf(playlistName);

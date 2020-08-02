@@ -48,7 +48,7 @@ export default connect(
 const styles = {
 	title: {
 		fontFamily: 'CircularBold',
-		fontSize: 18
+		fontSize: 19
 	}
 };
 

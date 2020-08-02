@@ -17,8 +17,9 @@ function ShowPlaylistScreen(props) {
 	}, [props.navigation]);
 
 	let listData = props.route.params.content;
+	let bottomMargin = props.currentTrack.id !== '000' ? { flex: 1, marginBottom: 60 } : { flex: 1 };
 	return listData.length > 0 ? (
-		<View style={{ flex: 1 }}>
+		<View style={bottomMargin}>
 			<FlatList
 				data={listData}
 				keyExtractor={(asset) => asset.id.toString()}
@@ -39,8 +40,12 @@ function ShowPlaylistScreen(props) {
 	);
 }
 
+function mapStateToProps(state) {
+	return { currentTrack: state.playback.currentTrack };
+}
+
 export default connect(
-	null,
+	mapStateToProps,
 	actions
 )(ShowPlaylistScreen);
 

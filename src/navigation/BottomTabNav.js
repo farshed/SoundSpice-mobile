@@ -44,7 +44,6 @@ function BottomTabNav(props) {
 			initialRouteName="Tracks"
 			backBehavior="initialRoute"
 			tabBarOptions={tabBarOptions}
-			resetOnBlur
 			lazy={false}>
 			<BottomTabs.Screen
 				name="Tracks"
