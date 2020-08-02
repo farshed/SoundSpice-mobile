@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { withTheme } from 'styled-components/native';
 import SearchScreen from '../screens/SearchScreen';
 import TracksScreen from '../screens/TracksScreen';
-import TopMaterialTabNav from './TopMaterialTabNav';
+import LibraryStack from './LibraryStack';
 import SettingsScreen from '../screens/SettingsScreen';
 import Icon from '../components/Icon';
 
@@ -59,7 +59,7 @@ function BottomTabNav(props) {
 			/>
 			<BottomTabs.Screen
 				name="Library"
-				component={TopMaterialTabNav}
+				component={LibraryStack}
 				options={{ tabBarIcon: iconProvider('Library') }}
 			/>
 			<BottomTabs.Screen

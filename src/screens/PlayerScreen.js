@@ -9,7 +9,7 @@ import PlaybackControl from '../components/PlaybackControl';
 import CoverArt from '../components/CoverArt';
 import Icon from '../components/Icon';
 import OptionsMenu from '../components/OptionsMenu';
-import { backgroundColor, bgTransColor, contrastTransColor, contrastColor } from '../themes/styles';
+import { backgroundColor, contrastTransColor, contrastColor } from '../themes/styles';
 
 const PlayerWidth = Dimensions.get('window').width * 0.82;
 
@@ -48,7 +48,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withTheme(PlayerScreen));
+export default connect(
+	mapStateToProps,
+	actions
+)(withTheme(PlayerScreen));
 
 const Gradient = styled(LinearGradient)`
 	flex: 1;

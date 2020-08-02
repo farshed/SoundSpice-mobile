@@ -47,7 +47,7 @@ function PlaylistOptions(props) {
 			onBackButtonPress={onPressCancel}
 			onBackdropPress={onPressCancel}
 			onSwipeComplete={onPressCancel}
-			backdropColor="black"
+			backdropColor="rgba(0, 0, 0, 0.5)"
 			animationOutTiming={100}
 			animationInTiming={100}
 			hideModalContentWhileAnimating>
@@ -94,7 +94,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(PlaylistOptions);
+export default connect(
+	mapStateToProps,
+	actions
+)(PlaylistOptions);
 
 const StyledModal = styled(Modal)`
 	justify-content: flex-end;
@@ -108,8 +111,8 @@ const ModalContentWrapper = styled.View`
 	elevation: 5;
 	justify-content: space-evenly;
 	margin-bottom: -20px;
-	border-top-left-radius: 30px;
-	border-top-right-radius: 30px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 `;
 
 const TextWrapper = styled.View`

@@ -51,7 +51,7 @@ export default connect(
 
 const folderIcon = {
 	name: 'folder',
-	type: 'entypo',
+	type: 'feather',
 	size: 24,
 	style: {
 		backgroundColor: 'transparent'

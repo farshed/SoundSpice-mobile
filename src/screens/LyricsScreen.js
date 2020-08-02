@@ -55,7 +55,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(LyricsScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(LyricsScreen);
 
 const Title = styled.Text`
 	font-family: 'Circular';
@@ -78,7 +81,7 @@ const Artist = styled.Text`
 
 const Lyrics = styled.Text`
 	font-family: 'CircularLight';
-	font-size: 17px;
+	font-size: 16px;
 	margin: 0 20px 50px 20px;
 	line-height: 24px;
 	color: ${contrastColor};

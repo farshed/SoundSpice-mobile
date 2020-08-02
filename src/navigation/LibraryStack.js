@@ -1,17 +1,19 @@
 import React from 'react';
 import { withTheme } from 'styled-components/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import BottomTabNav from './BottomTabNav';
-// import AddToPlaylist from '../screens/AddToPlayList';
-import AboutScreen from '../screens/AboutScreen';
+import Library from '../screens/Library';
+import PlaylistsScreen from '../screens/PlaylistsScreen';
+import ArtistsScreen from '../screens/ArtistsScreen';
+import AlbumsScreen from '../screens/AlbumsScreen';
+import FoldersScreen from '../screens/FoldersScreen';
 import ShowPlaylistScreen from '../screens/ShowPlaylistScreen';
 import ShowContentScreen from '../screens/ShowContentScreen';
-import TabOrder from '../screens/TabOrder';
+import AboutScreen from '../screens/AboutScreen';
 import Icon from '../components/Icon';
 
 const durationSpec = { config: { duration: 200 } };
 
-function MainStack(props) {
+function LibraryStack(props) {
 	const Stack = createStackNavigator();
 	const { background, contrast } = props.theme;
 
@@ -37,25 +39,24 @@ function MainStack(props) {
 		headerBackImage: () => <Icon name="chevron-left" type="feather" color={contrast} size={26} />
 	};
 
-	const noHeader = { headerShown: false };
 	const headerTitle = ({ route }) => ({ title: route.params.title });
+
 	return (
-		<Stack.Navigator
-			initialRouteName="bottom-tab"
-			headerMode="screen"
-			screenOptions={screenOptions}>
-			<Stack.Screen name="bottom-tab" component={BottomTabNav} options={noHeader} />
-			{/* <Stack.Screen
-				name="addToPlaylist"
-				component={AddToPlaylist}
-				options={{ title: 'Add to playlist' }}
-			/> */}
+		<Stack.Navigator headerMode="screen" screenOptions={screenOptions}>
+			<Stack.Screen name="library" component={Library} options={{ title: 'Your library' }} />
+			<Stack.Screen
+				name="playlists"
+				component={PlaylistsScreen}
+				options={{ title: 'Playlists' }}
+			/>
+			<Stack.Screen name="artists" component={ArtistsScreen} options={{ title: 'Artists' }} />
+			<Stack.Screen name="albums" component={AlbumsScreen} options={{ title: 'Albums' }} />
+			<Stack.Screen name="folders" component={FoldersScreen} options={{ title: 'Folders' }} />
 			<Stack.Screen name="playlist" component={ShowPlaylistScreen} options={headerTitle} />
 			<Stack.Screen name="content" component={ShowContentScreen} options={headerTitle} />
-			<Stack.Screen name="tab-order" component={TabOrder} options={noHeader} />
 			<Stack.Screen name="about" component={AboutScreen} options={{ title: 'About' }} />
 		</Stack.Navigator>
 	);
 }
 
-export default withTheme(MainStack);
+export default withTheme(LibraryStack);

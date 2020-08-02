@@ -22,7 +22,7 @@ const itemHeight = 75;
 
 function TracksScreen(props) {
 	const [modal, setModal] = useState({ visible: false, item: {} });
-	const { currentTrack, mediaLoaded, media } = props;
+	const { currentTrack } = props;
 
 	useEffect(() => {
 		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
@@ -36,13 +36,13 @@ function TracksScreen(props) {
 
 	const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
 
-	if (mediaLoaded) {
-		if (media.length > 0) {
+	if (props.mediaLoaded) {
+		if (props.media.length > 0) {
 			return (
 				<View style={renderMargin}>
 					<QuickScrollList
 						keyExtractor={(asset) => asset.id.toString()}
-						data={media}
+						data={props.media}
 						renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 						getItemLayout={flatListItemLayout}
 						scrollEventThrottle={16}
@@ -106,8 +106,6 @@ const styles = {
 		borderWidth: 0
 	},
 	flatlistContent: {
-		// marginTop: 20,
-		paddingBottom: 20
-		// paddingTop: 20
+		paddingBottom: 15
 	}
 };

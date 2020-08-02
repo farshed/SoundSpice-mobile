@@ -10,9 +10,11 @@ function ShowFolderScreen(props) {
 	const [modal, setModal] = useState({ visible: false, item: {} });
 
 	useEffect(() => {
-		let unsubscribe = props.navigation.addListener('focus', props.hideFooter);
+		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
 		return unsubscribe;
 	}, [props.navigation]);
+
+	// const renderMargin = currentTrack.id !== '000' ? { marginBottom: 60, flex: 1 } : { flex: 1 };
 
 	return (
 		<View style={{ flex: 1 }}>
@@ -31,4 +33,7 @@ function ShowFolderScreen(props) {
 	);
 }
 
-export default connect(null, actions)(ShowFolderScreen);
+export default connect(
+	null,
+	actions
+)(ShowFolderScreen);

@@ -1,7 +1,6 @@
 const INITIAL_STATE = {
 	foldersToSkip: ['whatsapp audio'],
-	theme: 'light',
-	topTabs: ['playlists', 'folders', 'artists', 'albums']
+	theme: 'light'
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -10,8 +9,6 @@ export default function(state = INITIAL_STATE, action) {
 			return { ...state, foldersToSkip: action.payload };
 		case 'set_theme':
 			return { ...state, theme: action.payload };
-		case 'set_top_tabs':
-			return { ...state, topTabs: action.payload };
 		default:
 			return state;
 	}

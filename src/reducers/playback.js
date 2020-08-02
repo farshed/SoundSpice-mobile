@@ -26,8 +26,8 @@ export default function(state = INITIAL_STATE, action) {
 	}
 }
 
-// home
-// playlist
-// artist
-// album
-// folder
+// home			-->		['home]
+// playlist	-->		['playlist', playlistName]
+// artist		-->		['artist', artistName]
+// album		-->		['album', albumName]
+// folder		-->		['folder', 'folderName']

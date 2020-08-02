@@ -12,7 +12,7 @@ function ShowPlaylistScreen(props) {
 	const [modal, setModal] = useState({ visible: false, item: {} });
 
 	useEffect(() => {
-		let unsubscribe = props.navigation.addListener('focus', props.hideFooter);
+		let unsubscribe = props.navigation.addListener('focus', props.showFooter);
 		return unsubscribe;
 	}, [props.navigation]);
 
@@ -39,7 +39,10 @@ function ShowPlaylistScreen(props) {
 	);
 }
 
-export default connect(null, actions)(ShowPlaylistScreen);
+export default connect(
+	null,
+	actions
+)(ShowPlaylistScreen);
 
 const EmptyWrapper = styled.View`
 	flex: 1;
