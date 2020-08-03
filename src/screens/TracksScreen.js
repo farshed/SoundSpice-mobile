@@ -63,6 +63,7 @@ function TracksScreen(props) {
 						scrollEventThrottle={16}
 						contentContainerStyle={styles.flatlistContent}
 						initialScrollIndex={currentTrack.index || undefined}
+						indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 					/>
 					<OptionsModal
 						selectedTrack={modal.item}
@@ -88,7 +89,8 @@ function mapStateToProps(state) {
 	return {
 		currentTrack: state.playback.currentTrack,
 		media: state.media.mediaFiles,
-		mediaLoaded: state.media.mediaLoaded
+		mediaLoaded: state.media.mediaLoaded,
+		theme: state.settings.theme
 	};
 }
 

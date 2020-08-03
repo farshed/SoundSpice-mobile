@@ -41,6 +41,7 @@ function SearchScreen(props) {
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				keyExtractor={(asset) => asset.id.toString()}
 				style={[styles.resultsWrapper, renderMargin]}
+				indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 			/>
 		) : (
 			<PlaceholderWrapper>
@@ -78,11 +79,15 @@ function SearchScreen(props) {
 function mapStateToProps(state) {
 	return {
 		currentTrack: state.playback.currentTrack,
-		media: state.media.mediaFiles
+		media: state.media.mediaFiles,
+		theme: state.settings.theme
 	};
 }
 
-export default connect(mapStateToProps, actions)(SearchScreen);
+export default connect(
+	mapStateToProps,
+	actions
+)(SearchScreen);
 
 const Wrapper = styled.View`
 	flex: 1;

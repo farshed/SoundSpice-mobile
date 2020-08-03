@@ -48,6 +48,7 @@ function AlbumsScreen(props) {
 				renderItem={renderAlbums}
 				getItemLayout={flatListItemLayout}
 				keyExtractor={(asset) => asset.title.toString()}
+				indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 			/>
 		</View>
 	);
@@ -56,7 +57,8 @@ function AlbumsScreen(props) {
 function mapStateToProps(state) {
 	return {
 		albums: state.media.albums,
-		currentTrack: state.playback.currentTrack
+		currentTrack: state.playback.currentTrack,
+		theme: state.settings.theme
 	};
 }
 

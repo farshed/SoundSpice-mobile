@@ -23,6 +23,7 @@ function ShowFolderScreen(props) {
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				data={props.route.params.content}
 				getItemLayout={flatListItemLayout}
+				indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 			/>
 			<OptionsModal
 				selectedTrack={modal.item}
@@ -34,7 +35,10 @@ function ShowFolderScreen(props) {
 }
 
 function mapStateToProps(state) {
-	return { currentTrack: state.playback.currentTrack };
+	return {
+		currentTrack: state.playback.currentTrack,
+		theme: state.settings.theme
+	};
 }
 
 export default connect(

@@ -14,7 +14,7 @@ export default function App() {
 		store.dispatch({ type: 'set_playback', payload: false }); // To make sure currentTrack is paused at startup
 		if (Text.defaultProps == null) Text.defaultProps = {};
 		Text.defaultProps.allowFontScaling = false;
-		console.disableYellowBox = true;
+		// console.disableYellowBox = true;
 	}, []);
 
 	function renderApp(isReady) {

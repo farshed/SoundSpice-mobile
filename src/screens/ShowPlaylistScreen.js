@@ -25,6 +25,7 @@ function ShowPlaylistScreen(props) {
 				keyExtractor={(asset) => asset.id.toString()}
 				renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
 				getItemLayout={flatListItemLayout}
+				indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 			/>
 			<OptionsModal
 				selectedTrack={modal.item}
@@ -41,7 +42,10 @@ function ShowPlaylistScreen(props) {
 }
 
 function mapStateToProps(state) {
-	return { currentTrack: state.playback.currentTrack };
+	return {
+		currentTrack: state.playback.currentTrack,
+		theme: state.settings.theme
+	};
 }
 
 export default connect(

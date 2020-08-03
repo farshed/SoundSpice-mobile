@@ -48,6 +48,7 @@ function ArtistsScreen(props) {
 				renderItem={renderArtists}
 				getItemLayout={flatListItemLayout}
 				keyExtractor={(asset) => asset.title.toString()}
+				indicatorStyle={props.theme === 'dark' ? 'white' : 'black'}
 			/>
 		</View>
 	);
@@ -56,7 +57,8 @@ function ArtistsScreen(props) {
 function mapStateToProps(state) {
 	return {
 		artists: state.media.artists,
-		currentTrack: state.playback.currentTrack
+		currentTrack: state.playback.currentTrack,
+		theme: state.settings.theme
 	};
 }
 
