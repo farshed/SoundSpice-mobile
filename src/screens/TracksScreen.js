@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, StatusBar } from 'react-native';
+import { View } from 'react-native';
+// import { View, Dimensions, StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import TrackPlayer from 'react-native-track-player';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import QuickScrollList from 'react-native-quick-scroll';
+// import QuickScrollList from 'react-native-quick-scroll';
 import setupPlayer from '../services/SetupPlayer';
 import RenderActivityIndicator from '../components/RenderActivityIndicator';
 import RenderTrack from '../components/RenderTrack';
@@ -12,13 +13,14 @@ import OptionsModal from '../components/OptionsModal';
 import { flatListItemLayout } from '../utils/FlatListLayout';
 import { scanMessage } from '../constants';
 import { contrastColor } from '../themes/styles';
+import { FlatList } from 'react-native-gesture-handler';
 
-const ScreenHeight = Dimensions.get('window').height;
-const StatusBarHeight = StatusBar.currentHeight;
-const FooterHeight = 60;
-const BottomTabHeight = 49;
-const ViewportHeight = ScreenHeight - (StatusBarHeight + FooterHeight + BottomTabHeight);
-const itemHeight = 75;
+// const ScreenHeight = Dimensions.get('window').height;
+// const StatusBarHeight = StatusBar.currentHeight;
+// const FooterHeight = 60;
+// const BottomTabHeight = 49;
+// const ViewportHeight = ScreenHeight - (StatusBarHeight + FooterHeight + BottomTabHeight);
+// const itemHeight = 75;
 
 function TracksScreen(props) {
 	const [modal, setModal] = useState({ visible: false, item: {} });
@@ -40,7 +42,7 @@ function TracksScreen(props) {
 		if (props.media.length > 0) {
 			return (
 				<View style={renderMargin}>
-					<QuickScrollList
+					{/* <QuickScrollList
 						keyExtractor={(asset) => asset.id.toString()}
 						data={props.media}
 						renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
@@ -52,6 +54,15 @@ function TracksScreen(props) {
 						viewportHeight={ViewportHeight}
 						rightOffset={10}
 						thumbStyle={styles.thumbStyle}
+					/> */}
+					<FlatList
+						keyExtractor={(asset) => asset.id.toString()}
+						data={props.media}
+						renderItem={({ item }) => <RenderTrack item={item} setOptions={setModal} />}
+						getItemLayout={flatListItemLayout}
+						scrollEventThrottle={16}
+						contentContainerStyle={styles.flatlistContent}
+						initialScrollIndex={currentTrack.index || undefined}
 					/>
 					<OptionsModal
 						selectedTrack={modal.item}
@@ -101,10 +112,10 @@ const Message = styled.Text`
 `;
 
 const styles = {
-	thumbStyle: {
-		width: 4,
-		borderWidth: 0
-	},
+	// thumbStyle: {
+	// 	width: 4,
+	// 	borderWidth: 0
+	// },
 	flatlistContent: {
 		paddingBottom: 15
 	}
