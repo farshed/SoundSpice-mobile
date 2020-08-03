@@ -66,7 +66,7 @@ function SettingsScreen(props) {
 			/>
 
 			<ListItem
-				iconProps={icons.scan}
+				iconProps={icons.excluded}
 				title={settings.excludeFolders.title}
 				onPress={() => setInputVisible(true)}
 				subtitle={skippedFolders}
@@ -80,7 +80,7 @@ function SettingsScreen(props) {
 			/>
 
 			<ListItem
-				iconProps={icons.bug}
+				iconProps={icons.issue}
 				title={settings.reportABug.title}
 				onPress={onPressReport}
 				subtitle={settings.reportABug.subtitle}
@@ -144,9 +144,9 @@ const icons = {
 		type: 'feather',
 		size: 28
 	},
-	scan: {
-		name: 'folder-search-outline',
-		type: 'material-community',
+	excluded: {
+		name: 'folder-minus',
+		type: 'feather',
 		size: 28
 	},
 	delete: {
@@ -154,20 +154,15 @@ const icons = {
 		type: 'feather',
 		size: 28
 	},
-	musicFile: {
-		name: 'rocket',
-		type: 'simple-line-icon',
-		size: 26
-	},
 	about: {
-		name: 'infocirlceo',
-		type: 'antdesign',
-		size: 26
+		name: 'info',
+		type: 'feather',
+		size: 28
 	},
-	bug: {
-		name: 'bug',
-		type: 'entypo',
-		size: 26
+	issue: {
+		name: 'alert-circle',
+		type: 'feather',
+		size: 28
 	},
 	share: {
 		name: 'share-2',

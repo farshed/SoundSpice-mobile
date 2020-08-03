@@ -77,9 +77,9 @@ const EmptyText = styled.Text`
 `;
 
 const playlistIcon = {
-	name: 'playlist-music-outline',
-	type: 'material-community',
-	size: 28
+	name: 'headphones',
+	type: 'feather',
+	size: 26
 };
 
 const styles = {

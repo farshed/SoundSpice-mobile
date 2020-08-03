@@ -40,13 +40,17 @@ export default function cleanupMedia(media) {
 		settings: { foldersToSkip }
 	} = store.getState();
 	let mediaFiles = media.filter(
-		(val) => !foldersToSkip.includes(getFolder(val.path).toLowerCase())
+		(val) =>
+			!foldersToSkip.includes(
+				getFolder(val.path).toLowerCase() ||
+					val.fileName.includes('.flac') ||
+					val.fileName.includes('#')
+			)
 	);
 	for (let i = 0; i < mediaFiles.length; i++) {
-		// if (mediaFiles[i].title) {
-		if (mediaFiles[i].fileName.includes('.flac') || mediaFiles[i].fileName.includes('#')) {
-			continue;
-		}
+		// if (mediaFiles[i].fileName.includes('.flac') || mediaFiles[i].fileName.includes('#')) {
+		// 	continue;
+		// }
 		folderName = getFolder(mediaFiles[i].path);
 		newMedia.push({
 			id: mediaFiles[i].duration + i,

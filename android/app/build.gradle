@@ -1,7 +1,7 @@
 apply plugin: "com.android.application"
 
 project.ext.vectoricons = [
-    iconFontNames: [ 'Feather.ttf', 'Entypo.ttf', 'Fontisto.ttf', 'SimpleLineIcons.ttf', 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf', 'AntDesign.ttf' ]
+    iconFontNames: [ 'Feather.ttf', 'MaterialIcons.ttf' ]
 ]
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 

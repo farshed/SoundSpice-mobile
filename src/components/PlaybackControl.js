@@ -28,6 +28,7 @@ function PlaybackControl(props) {
 			: currentTrack.index === 0
 			? media[media.length - 1]
 			: media[currentTrack.index - 1];
+		console.log(currentTrack.index);
 		props.setCurrentTrack(nextTrack);
 	}
 
@@ -74,7 +75,10 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(PlaybackControl);
+export default connect(
+	mapStateToProps,
+	actions
+)(PlaybackControl);
 
 const MainWrapper = styled.View`
 	flex-direction: row;
@@ -126,14 +130,14 @@ const icons = {
 		size: 32
 	},
 	skipForward: {
-		name: 'step-forward',
-		type: 'fontisto',
-		size: 20
+		name: 'skip-next',
+		type: 'material',
+		size: 40
 	},
 	skipBackward: {
-		name: 'step-backwrad',
-		type: 'fontisto',
-		size: 20
+		name: 'skip-previous',
+		type: 'material',
+		size: 40
 	},
 	loop: {
 		name: 'repeat',
