@@ -28,7 +28,6 @@ function PlaybackControl(props) {
 			: currentTrack.index === 0
 			? media[media.length - 1]
 			: media[currentTrack.index - 1];
-		console.log(currentTrack.index);
 		props.setCurrentTrack(nextTrack);
 	}
 

@@ -2,36 +2,6 @@ import _ from 'underscore';
 import { store } from '../store';
 // import { PITCH_ALGORITHM_MUSIC } from 'react-native-track-player';
 
-// For testing
-// export default function cleanupMedia(media) {
-// 	if (!Array.isArray(media) || media.length === 0) return [];
-// 	let newMedia = [];
-// 	let folderName = '';
-// 	let {
-// 		settings: { foldersToSkip }
-// 	} = store.getState();
-// 	let mediaFiles = media.filter(
-// 		(val) => !foldersToSkip.includes(getFolder(val.path).toLowerCase())
-// 	);
-// 	for (let i = 0; i < mediaFiles.length; i++) {
-// 		if (mediaFiles[i].title) {
-// 			folderName = getFolder(mediaFiles[i].path);
-// 			newMedia.push({
-// 				id: mediaFiles[i].duration + i,
-// 				duration: mediaFiles[i].duration,
-// 				url: mediaFiles[i].path,
-// 				title: mediaFiles[i].title,
-// 				artwork: mediaFiles[i].path || 'cover',
-// 				artist: mediaFiles[i].artist === '<unknown>' ? 'unknown' : mediaFiles[i].artist,
-// 				album: mediaFiles[i].album === '<unknown>' ? 'unknown' : mediaFiles[i].album,
-// 				index: i,
-// 				folder: folderName
-// 			});
-// 		}
-// 	}
-// 	return newMedia;
-// }
-
 export default function cleanupMedia(media) {
 	if (!Array.isArray(media) || media.length === 0) return [];
 	let newMedia = [];
@@ -41,16 +11,13 @@ export default function cleanupMedia(media) {
 	} = store.getState();
 	let mediaFiles = media.filter(
 		(val) =>
-			!foldersToSkip.includes(
-				getFolder(val.path).toLowerCase() ||
-					val.fileName.includes('.flac') ||
-					val.fileName.includes('#')
+			!(
+				foldersToSkip.includes(getFolder(val.path).toLowerCase()) ||
+				val.fileName.includes('.flac') ||
+				val.fileName.includes('#')
 			)
 	);
 	for (let i = 0; i < mediaFiles.length; i++) {
-		// if (mediaFiles[i].fileName.includes('.flac') || mediaFiles[i].fileName.includes('#')) {
-		// 	continue;
-		// }
 		folderName = getFolder(mediaFiles[i].path);
 		newMedia.push({
 			id: mediaFiles[i].duration + i,
