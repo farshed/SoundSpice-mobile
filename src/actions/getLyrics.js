@@ -1,5 +1,5 @@
 import { getLyrics } from 'genius-lyrics-api';
-import { geniusApiKey } from '../constants/keys';
+import { geniusApiKey } from '../constants/private';
 
 export const fetchLyrics = ({ title, artist }) => async (dispatch) => {
 	const config = { title, artist, optimizeQuery: true, apiKey: geniusApiKey };

@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { withTheme } from 'styled-components/native';
 import SearchScreen from '../screens/SearchScreen';
 import TracksScreen from '../screens/TracksScreen';
+import Radio from '../screens/Radio';
 import LibraryStack from './LibraryStack';
 import SettingsScreen from '../screens/SettingsScreen';
 import Icon from '../components/Icon';
@@ -29,6 +30,8 @@ function BottomTabNav(props) {
 					return <Icon name="music" type="feather" size={focused ? 26 : 23} color={color} />;
 				case 'Search':
 					return <Icon name="search" type="feather" size={focused ? 26 : 23} color={color} />;
+				case 'Radio':
+					return <Icon name="radio" type="feather" size={focused ? 28 : 25} color={color} />;
 				case 'Library':
 					return <Icon name="archive" type="feather" size={focused ? 26 : 23} color={color} />;
 				case 'Settings':
@@ -43,8 +46,7 @@ function BottomTabNav(props) {
 		<BottomTabs.Navigator
 			initialRouteName="Tracks"
 			backBehavior="initialRoute"
-			tabBarOptions={tabBarOptions}
-			lazy={false}>
+			tabBarOptions={tabBarOptions}>
 			<BottomTabs.Screen
 				name="Tracks"
 				component={TracksScreen}
@@ -56,6 +58,11 @@ function BottomTabNav(props) {
 				name="Search"
 				component={SearchScreen}
 				options={{ tabBarIcon: iconProvider('Search') }}
+			/>
+			<BottomTabs.Screen
+				name="Radio"
+				component={Radio}
+				options={{ tabBarIcon: iconProvider('Radio') }}
 			/>
 			<BottomTabs.Screen
 				name="Library"

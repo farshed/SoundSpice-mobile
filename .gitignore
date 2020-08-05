@@ -58,5 +58,7 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-keys.js
+keys.xml
+private.js
+stations.json
 .vscode
