@@ -15,7 +15,7 @@
 		"@react-navigation/bottom-tabs": "^5.7.2",
 		"@react-navigation/native": "^5.7.1",
 		"@react-navigation/stack": "^5.7.1",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"genius-lyrics-api": "^3.0.2",
 		"react": "16.11.0",
 		"react-native": "0.62.2",
